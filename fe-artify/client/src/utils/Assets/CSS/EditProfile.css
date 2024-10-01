@@ -60,7 +60,6 @@
     z-index: 10;
   }
 
-  /* Camera icon styling */
   .camera-icon {
     position: absolute;
     top: 20vh;
@@ -70,14 +69,14 @@
     cursor: pointer;
   }
 
-  /* Form section */
+ 
   .form-section {
     background-color: #2e5067;
     width: 80%;
     margin-top: 10vh;
   }
 
-  /* Form heading */
+
   .heading {
     font-size: 3rem;
     color: #F8EFBA;
@@ -88,19 +87,16 @@
     font-weight: bold;
   }
 
-  /* Name and Username fields container */
   .nameUserName {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
   }
 
-  /* Input containers to style labels and inputs */
   .input-container {
     margin-bottom: 1rem;
   }
 
-  /* Label styling */
   .labelData {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
@@ -114,7 +110,7 @@
     color: #3B3B3B;
   }
 
-  /* Input field styling */
+
   .inputClass,
   .textareaClass {
     width: 100%;
@@ -127,16 +123,17 @@
     font-size: 1rem;
   }
 
-  /* Bio textarea */
+
   .textareaClass {
     height: 20vh;
   }
 
-  /* Submit button */
+
   .submit {
     width: 20%;
     padding: 2vh;
     border: none;
+    margin-bottom: 3vw;
     border-radius: 1.5rem;
     font-size: 1rem;
     background: linear-gradient(90deg, #FAD000 10%, #947B00 90%);
