@@ -49,7 +49,6 @@ async function login(req, res) {
     });
   }
 
-  // Validating email format
   if (!emailRegex.test(email)) {
     return res.status(400).json({
       status: false,
@@ -57,7 +56,6 @@ async function login(req, res) {
     });
   }
 
-  // Validating password length
   if (password.length !== 8) {
     return res.status(400).json({
       status: false,
@@ -96,8 +94,35 @@ async function login(req, res) {
     });
   }
 }
+const getUser = (req, res) => {
+    const userId = req.query.userId;
 
-module.exports = {
-  register,
-  login,
-};
+    UserModel.findById(userId)
+    .then(userData => {
+        if(!userData) {
+            return res.json({
+                status: 404,
+                success: false,
+                msg: "Unable to find the user"
+            });
+        }
+        res.json({
+            status:200,
+            success:true,
+            data: userData});
+        })
+
+        .catch(err => {
+            res.json({
+                status: 500,
+                success:false,
+                msg: "Error Occured",
+                error: err});
+            });
+        };
+
+module.exports={
+    register,
+    getUser,
+    login
+}
