@@ -42,8 +42,6 @@ const register=(req,res)=>{
             }
         })
 }
-
-
 const updateUser=(req,res)=>{
     try {
         const userId = req.params.userId;
@@ -78,9 +76,35 @@ const updateUser=(req,res)=>{
     }
 }
 
+const getUser = (req, res) => {
+    const userId = req.query.userId;
 
+    UserModel.findById(userId)
+    .then(userData => {
+        if(!userData) {
+            return res.json({
+                status: 404,
+                success: false,
+                msg: "Unable to find the user"
+            });
+        }
+        res.json({
+            status:200,
+            success:true,
+            data: userData});
+        })
+
+        .catch(err => {
+            res.json({
+                status: 500,
+                success:false,
+                msg: "Error Occured",
+                error: err});
+            });
+        };
 
 module.exports={
     register,
+    getUser,
     updateUser
 }
