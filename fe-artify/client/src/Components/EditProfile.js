@@ -1,10 +1,13 @@
 import React from 'react'
 import '../utils/Assets/CSS/EditProfile.css'
-
+import Header from '../Reusables/Header';
+import Footer from '../Reusables/Footer'
 
 const EditProfile = () => {
     return (
+     
       <div className="edit-profile-container">
+        <Header/>
         <div className="background-image">
 
           <img class="banner" src="https://cdn.pixabay.com/photo/2022/10/10/07/58/mountain-7511116_1280.jpg" alt="Background" />
@@ -49,6 +52,7 @@ const EditProfile = () => {
   
           <button className="submit">Update Profile</button>
         </div>
+        <Footer/>
       </div>
     );
   };

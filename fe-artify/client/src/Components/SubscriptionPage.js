@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReusableCard from '../Reusables/ReusableCard';
 import { getSubscriptions } from '../utils/services/subscriptionServices';
-import './SubscriptionPage.css'; 
+import '../utils/Assets/CSS/SubscriptionPage.css'; 
+import Header from '../Reusables/Header';
+import Footer from '../Reusables/Footer';
 
 const SubscriptionPage = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -20,6 +22,7 @@ const SubscriptionPage = () => {
 
   return (
     <div className="subscription-page">
+      <Header/>
       <h1 className="page-title">Set up your account, pick a plan later.</h1>
       <p className="page-description">
         Choose the plan that's right for you. Whether you're just getting started or well down the path to personalization, we've got you covered.
@@ -34,6 +37,7 @@ const SubscriptionPage = () => {
           />
         ))}
       </div>
+      <Footer/>
     </div>
   );
 

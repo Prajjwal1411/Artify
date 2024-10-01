@@ -1,5 +1,5 @@
 import React from 'react';
-import './ReusableCard.css';
+import '../utils/Assets/CSS/ReusableCard.css';
 
 const ReusableCard = ({ index, subscription, onClick }) => {
   // Define card background based on the index
