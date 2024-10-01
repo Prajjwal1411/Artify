@@ -94,6 +94,40 @@ async function login(req, res) {
     });
   }
 }
+const updateUser=(req,res)=>{
+    try {
+        const userId = req.params.userId;
+        const updateData = req.body;
+        const updatedUser = User.findByIdAndUpdate(userId, updateData, {
+            new: true,
+            runValidators: true, 
+        });
+
+        if (!updatedUser) {
+            return res.json({
+                status:404,
+                success:false,
+                msg:"User doesn't exist"
+            })
+        }
+
+        return res.res.json({
+            status:200,
+            success:true,
+            msg:"User updated successfully",
+            users:updateUser
+        })
+    } catch (error) {
+        console.error("Error updating user:", error);
+        return res.json({
+            status:500,
+            success:false,
+            msg:"Internal server error",
+            err:error
+        });
+    }
+}
+
 const getUser = (req, res) => {
     const userId = req.query.userId;
 
@@ -124,5 +158,6 @@ const getUser = (req, res) => {
 module.exports={
     register,
     getUser,
+    updateUser,
     login
 }
