@@ -3,9 +3,8 @@ import './App.css';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import EditProfile from './Components/EditProfile';
 import SubscriptionPage from './Components/SubscriptionPage';
-import Login from './Components/Login/Login';
-import Signup from './Components/SignUp/SignUp';
-
+import Login from './Components/Login';
+import Signup from './Components/SignUp';
 function App() {
   return (
     <div className="App">

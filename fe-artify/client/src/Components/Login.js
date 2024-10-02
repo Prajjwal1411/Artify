@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
-import './Login.css';
-import Header from "../../Reusables/Header"
-import Footer from "../../Reusables/Footer"
+import '../utils/Assets/CSS/Login.css';
+import Header from "../Reusables/Header"
+import Footer from "../Reusables/Footer"
 
 import { Link } from "react-router-dom";
+import { login } from "../utils/services/authServices";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,20 +23,19 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/auth/validate-user", formData);
-      if (response.data) {
-        setMessage(response.data.data);
+        let response=await login(formData)
+        setMessage(response);
       }
-    } catch (e) {
+     catch (e) {
       setMessage(e.response.data.error);
     }
   };
 
   return (
-  <>
-  <Header/>
+  
 
   <div className="main">
+    <Header/>
       <div className="container">
         <div className="image2"></div>
         <div className="form-container">
@@ -70,9 +69,8 @@ const Login = () => {
           <p className="paragraph">Don't have an account?<Link to='/signup' className="signup-link">Sign Up</Link></p>
         </div>
       </div>
+      <Footer/>
     </div>
-  <Footer/>
-  </>
   );
 };
 

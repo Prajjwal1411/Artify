@@ -51,12 +51,13 @@
     border-radius: 0.5rem;
     color: white;
     padding: 1.3vh 1vw;
+    width: 15%;
     text-align: center;
     font-size: 0.8rem;
     border: 0.1rem solid #A259FF;
     position: absolute;
     margin-top: 25%;
-    left: calc(50% - 5vw);
+    left: calc(50% - 7vw);
     z-index: 10;
   }
 

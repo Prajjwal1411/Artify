@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./SignUp.css";
-import Header from "../../Reusables/Header";
-import Footer from "../../Reusables/Footer";
+import "../utils/Assets/CSS/SignUp.css";
+import Header from "../Reusables/Header";
+import Footer from "../Reusables/Footer";
 
 
 const SignUp = () => {
@@ -37,9 +37,8 @@ const SignUp = () => {
   };
 
   return (
-   <>
-   <Header/>
     <div className="main">
+    <Header/>
       <div className="container">
         <div className="image"></div>
         <div className="form-container">
@@ -96,9 +95,8 @@ const SignUp = () => {
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
-    <Footer/>
-   </>
   );
 };
 

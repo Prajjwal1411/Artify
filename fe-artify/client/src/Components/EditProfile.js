@@ -9,9 +9,10 @@ const EditProfile = () => {
       <div className="edit-profile-container">
         <Header/>
         <div className="background-image">
-
+          {/* Mountains PixaBay https://cdn.pixabay.com/photo/2022/10/10/07/58/mountain-7511116_1280.jpg */}
           <img class="banner" src="https://cdn.pixabay.com/photo/2022/10/10/07/58/mountain-7511116_1280.jpg" alt="Background" />
           <div className="profile-photo">
+            {/* BobCat istockPhoto https://cdn.pixabay.com/photo/2022/10/10/07/58/mountain-7511116_1280.jpg */}
             <img src="https://media.istockphoto.com/id/1835504092/photo/the-bobcat-also-known-as-the-red-lynx-is-a-medium-sized-cat-native-to-north-america-it-ranges.jpg?s=2048x2048&w=is&k=20&c=I9vLSFG7fqt9V_07air8WacQ12evZZYaq1IYVGCifrE=" alt="Profile" />
           </div>
           <button className="upload-photo-btn">Upload Profile Photo</button>
