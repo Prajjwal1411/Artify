@@ -5,6 +5,8 @@
     width: 300px;
     border-radius: 10px;
     transition: transform 0.2s;
+    position: relative;
+    overflow: hidden; 
   }
   
   
@@ -14,15 +16,46 @@
     font-weight: bold;
     color: #156dfe; 
   }
-  
+
+  .highlight
+  {
+    padding-top: 15px;
+  }
+  .divider {
+    border: none;
+    height: 1px;
+    background-color: #ccc; 
+    margin: 10px 0;
+  }
   .feature
   {
     text-align: left ;
+    padding: 5vh;
+    list-style-type: none;
+  }
+
+  .feature li {
+    position: relative;
+    padding-left: 20px; 
+    margin-bottom: 10px;
+  }
+
+  .feature li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 20px; 
+    height: 20px;
+    background-image: url('../Images/logo.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
   }
   
   .select-plan-btn {
     background-color: #4e00b2;
     color: white;
+    font-weight: bold;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -36,12 +69,26 @@
   .platinum-card {
     background-color: #e5e4e2; 
   }
+
+  .popular-choice-banner {
+    position: absolute;
+    top: 14px;
+    right: -25px;
+    background-color: #4e00b2;
+    color: white;
+    padding: 5px 25px;     
+    font-size: 0.55rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
   
   .gold-card {
-    background-color: #ffd700; 
+    background-color: #FFD700; 
   }
   
   .silver-card {
-    background-color: #c0c0c0; 
+    background-color: #BFBDBC; 
   }
   
