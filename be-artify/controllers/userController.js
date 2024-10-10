@@ -39,30 +39,6 @@ const register = (req, res) => {
 async function login(req, res) {
   const { email, password } = req.body;
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Validating empty fields
-  if (!email || !password) {
-    return res.status(400).json({
-      status: false,
-      error: "All fields are required.",
-    });
-  }
-
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({
-      status: false,
-      error: "Invalid email address.",
-    });
-  }
-
-  if (password.length !== 8) {
-    return res.status(400).json({
-      status: false,
-      error: "Password must be exactly 8 characters long.",
-    });
-  }
-
   const userEmail = await UserModel.findOne({ email });
   if (userEmail) {
     try {
@@ -77,6 +53,7 @@ async function login(req, res) {
         return res.status(200).json({
           status: true,
           data: "Logged In!",
+          user:userEmail
         });
       }
     } catch (e) {
