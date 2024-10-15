@@ -5,6 +5,8 @@ import EditProfile from './Components/EditProfile';
 import SubscriptionPage from './Components/SubscriptionPage';
 import Login from './Components/Login';
 import Signup from './Components/SignUp';
+import ProductCard from './Reusables/ProductCard'; // Reusable Product Card Test
+
 function App() {
   return (
     <div className="App">
@@ -14,6 +16,8 @@ function App() {
         <Route path='/subscription' element={<SubscriptionPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/productcard' element={<ProductCard />} /> {/* Test Route for reusable cards */}
+
 
         </Routes>
       </Router>
