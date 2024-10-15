@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
         let response=await login(formData)
-        setMessage(response);
+        setMessage(response.data);
       }
      catch (e) {
       setMessage(e.response.data.error);
