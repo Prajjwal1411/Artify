@@ -38,9 +38,9 @@ const Header = () => {
           </li>
           <li>
             <a 
-              href="#explore-art" 
+              href="/explore" 
               className={activeLink === 'Explore Art' ? 'active' : ''} 
-              onClick={() => handleLinkClick('/ExploreArt')}
+              onClick={() => handleLinkClick('/explore')}
             >
               Explore Art
             </a>
