@@ -184,7 +184,7 @@
 .view-more-button {
     background-color: #FAD000;
     color: black;
-    border: none;
+    border: 2px solid #A259FF;
     border-radius: 50px;
     width: 179px;
     height: 66px;
