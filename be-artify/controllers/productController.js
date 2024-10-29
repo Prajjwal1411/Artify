@@ -28,8 +28,29 @@ const saveProducts = (req, res) => {
           });
 
     }
-};
+}
+
+const getProducts = (req,res) =>{
+
+  productModel.find()
+  .then(Products => {
+      res.json({
+          status: 200,
+          success: true,
+          data: Products
+      });
+  })
+  .catch(err => {
+      console.error(err);
+      res.status(500).json({
+          status: 500,
+          success: false,
+          msg: "Internal server error"
+      });
+  });
+}
 
 module.exports = {
-    saveProducts
+    saveProducts,
+    getProducts
 };
