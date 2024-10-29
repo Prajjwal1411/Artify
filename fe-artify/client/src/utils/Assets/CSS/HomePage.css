@@ -1,0 +1,342 @@
+/* General container styling */
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-family: 'Work Sans', sans-serif;
+}
+
+/* Intro section styling */
+.intro-section {
+  background-color: #385966;
+  width: 100%;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Text container to hold heading and paragraph */
+.intro-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 30px;
+}
+
+.intro-heading {
+  font-size: 67px;
+  color: #F8EFBA;
+  text-align: left;
+  font-weight:500;
+  line-height: 1.2;
+}
+
+.intro-subtext {
+  font-size: 22px;
+  color: #ffffff;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 30px; 
+  margin-top: 20px;
+}
+
+/* Button styling */
+.get-started-button {
+  display: inline-block; 
+  padding: 20px 40px; 
+  font-size: 20px;
+  max-width: 250px;
+  margin-left: -40px;
+  color: #ffffff;
+  font-family: 'Space Mono', monospace;
+  background: linear-gradient(to right, #CA318E, #471433, #360F27);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.get-started-button:hover {
+  transform: scale(1.05); 
+}
+
+.intro-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 70px;
+  margin-top: -40px;
+}
+
+.intro-image img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Statistics Style */
+
+.statistics-section {
+  display: flex;
+  justify-content: space-around; 
+  width: 100%;
+  font-family: 'Space Mono', monospace;
+  margin-top: 50px; 
+  margin-left: -50px;
+}
+
+.statistic-item {
+  text-align: center; 
+}
+
+.statistic-number {
+  font-size: 28px; 
+  font-weight: bold;
+  color: #FFFFFF; 
+}
+
+.statistic-title {
+  font-size: 18px; 
+  color: #FFFFFF; 
+}
+
+/* Join a world Div Styling */
+
+.join-a-world {
+  height: 281px;
+  width:100%;
+  background-color: #65939D;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0 20px; 
+}
+
+.join-heading {
+  color: #F8EFBA;
+  font-weight: 500;
+  font-size: 40px;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.right-content {
+  display: flex; 
+  gap: 40px; 
+}
+
+.item {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.fast-bidding, .variety-artpieces {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 200px;
+  color: #000000;
+}
+
+.additional-info {
+  font-family: 'DM Sans', sans-serif; 
+  font-size: 16px; 
+  color: #ffffff; 
+  margin-top: 20px; 
+  text-align: justify;
+  margin-right: 100px;
+}
+
+
+.icon-image {
+  width: 35px; 
+  height: 35px;
+  margin-right: 8px; 
+}
+
+.sneak-peek-into-our-world {
+  background-color: #385966;
+  width: 100%;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sneak-peek-heading {
+  color: #F8EFBA;
+  font-weight: 500;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 70px; 
+}
+
+.sneak-peek-svg {
+  width: 80%; 
+  height: 80%;
+}
+
+/* Join Today Div styling */
+
+.join-top-creators {
+  background-color: #65939D; 
+  width: 100%;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start; 
+}
+
+.creators-heading {
+  color: #F8EFBA;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 10px; 
+}
+
+.creators-paragraph {
+  color: #ffffff;
+  font-size: 20px;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 0; 
+}
+
+/* Join Today button styling */
+.join-today-button {
+  background-color: #56153C;
+  width: 20%;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid #A259FF; 
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 40px;
+  margin-right: 100px;
+  transition: transform 0.3s ease;
+}
+
+.join-today-button:hover {
+  transform: scale(1.05);
+  background-color: #56153C; 
+}
+
+.artist-card-section {
+  background-color: #385966;
+  width: 100%;
+  padding: 50px 20px; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.artist-card-image {
+  max-width: 100%; 
+  height: auto; 
+}
+
+
+
+/* Create and Set a Bid Section Styling */
+.create-bid-section {
+  background-color: #406c77;
+  width: 100%;
+  padding: 50px 20px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+.bid-svg {
+  flex: 1;
+  max-width: 50%; 
+  margin-left: 100px;
+}
+
+.bid-content {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bid-heading {
+  color: #F8EFBA;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 45px;
+  margin-left: 100px;
+}
+
+.bid-paragraph {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: 100px;
+  text-align: left;
+}
+
+.sign-up-button {
+  display: inline-block;
+  padding: 20px 40px;
+  font-size: 20px;
+  max-width: 250px;
+  color: #ffffff;
+  font-family: 'Space Mono', monospace;
+  background: linear-gradient(to right, #CA318E, #471433, #360F27);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 100px;
+  transition: transform 0.3s ease;
+}
+
+.sign-up-button:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* How it Works Section Styling */
+.how-it-works-section {
+  background-color: #385966; 
+  width: 100%;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.how-it-works-heading {
+  color: #F8EFBA;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+.how-it-works-svg {
+  width: 100%; 
+  margin-top: 50px;
+  max-width: 1000px; 
+}
