@@ -2,7 +2,7 @@ const productModel=require('../models/productModel')
 
 const getHighestBids = async (req, res) => {
     try {
-        const products = await ProductData.find({}, 'highestBid _id');
+        const products = await productModel.find({}, 'highestBid _id');
 
         const productBids = products.map(product => ({
             productId: product._id,
