@@ -25,15 +25,18 @@ const productSchema=new mongoDb.Schema({
     },
     highestBidUserID:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"User",
+        default:null
     },
     sellerID:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"User",
+        default:null
     },
     categoryID:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Category"
+        ref:"Category",
+        default:null
     },
     productAddedOn:{
         type:Date,
