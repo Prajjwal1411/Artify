@@ -4,10 +4,15 @@ import { getSubscriptions } from '../utils/services/subscriptionServices';
 import '../utils/Assets/CSS/SubscriptionPage.css'; 
 import Header from '../Reusables/Header';
 import Footer from '../Reusables/Footer';
+import { useLocation } from 'react-router-dom';
+import { register } from '../utils/services/authServices';
 
 const SubscriptionPage = () => {
   const [subscriptions, setSubscriptions] = useState([]);
 
+  const location = useLocation();
+  const formData = location.state;
+  console.log(formData,"1243")
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,6 +48,15 @@ const SubscriptionPage = () => {
 
   function handleSubscribe(subscriptionId) {
     console.log("Subscription selected:", subscriptionId);
+    formData.subscriptionId=subscriptionId;
+    formData.subscriptionStartDate=new Date()
+    let currentDate=new Date();
+    currentDate.setMonth(currentDate.getMonth()+1)
+    formData.subscriptionEndDate = currentDate;
+
+    let response=register(formData);
+    console.log(response)
+
   }
 };
 

@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import "../utils/Assets/CSS/SignUp.css";
 import Header from "../Reusables/Header";
 import Footer from "../Reusables/Footer";
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
+    firstName:"",
+    lastName:"",
     userName: "",
     email: "",
     password: "",
@@ -23,7 +27,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.password === formData.confirmedPassword) {
-      setMessage("Successfully submitted the form!");
+      navigate("/subscription", { state: formData });
     } else {
       setMessage("Passwords do not match!");
     }
@@ -57,14 +61,24 @@ const SignUp = () => {
             </p>
           )}
           <form onSubmit={handleSubmit}>
+            <div class="name"> 
             <input
               type="text"
-              name="userName"
-              placeholder="Username"
-              value={formData.userName}
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
               onChange={handleChange}
               required
             />
+             <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+            </div>
             <input
               type="email"
               name="email"
