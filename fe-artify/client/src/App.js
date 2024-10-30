@@ -9,21 +9,26 @@ import ProductCard from "./Reusables/ProductCard"; // Reusable Product Card Test
 import HomePage from "./Components/HomePage";
 import Profile from "./Components/Profile";
 import Popuptest from "./Components/Popuptest";
+import ArtworkForm from './Components/ArtworkForm';
+import HomePage from './Components/HomePage';
+import Profile from './Components/Profile'; 
+
+
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <Route path="/homepage" element={<HomePage />} />
-          <Route path="/" element={<EditProfile />} />
-          <Route path="/subscription" element={<SubscriptionPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/productcard" element={<ProductCard />} />{" "}
-          {/* Test Route for reusable cards */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/test-popup" element={<Popuptest />} />
+       <Routes>
+        <Route path='/uploadImage' element={<ArtworkForm/>}/>
+       <Route path="/homepage" element={<HomePage />} />
+        <Route path='/' element={<EditProfile/>}/>
+        <Route path='/subscription' element={<SubscriptionPage/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/productcard' element={<ProductCard />} /> {/* Test Route for reusable cards */}
+         <Route path='/profile' element={<Profile />} />
+
         </Routes>
       </Router>
     </div>
