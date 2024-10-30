@@ -47,9 +47,9 @@ const Header = () => {
           </li>
           <li>
             <a 
-              href="#upload-art" 
+              href="/UploadArt" 
               className={activeLink === 'Upload Art' ? 'active' : ''} 
-              onClick={() => handleLinkClick('Upload Art')}
+              onClick={() => handleLinkClick('/UploadArt')}
             >
               Upload Art
             </a>

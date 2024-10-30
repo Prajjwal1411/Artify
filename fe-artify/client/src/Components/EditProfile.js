@@ -23,11 +23,11 @@ const EditProfile = () => {
         <div className="form-section">
           <h2 className="heading">Information</h2>
           <div className="nameUserName">
-            <div className="input-container">
+            <div className="input-container-name">
               <label className="labelData">Full Name *</label>
               <input className="inputClass" placeholder="John Doe" />
             </div>
-            <div className="input-container">
+            <div className="input-container-name">
               <label className="labelData">Username *</label>
               <input className="inputClass" placeholder="Space Monk" />
             </div>

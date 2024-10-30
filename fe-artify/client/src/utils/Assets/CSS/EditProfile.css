@@ -38,8 +38,8 @@
     margin: 0 auto;
     display: block;
     position: absolute;
-    margin-top: -7%;
-    margin-left: 44%;
+    margin-top: 10%;
+    margin-left:calc(78% + 10vw);
   }
   
   .profile-photo img {
@@ -59,7 +59,7 @@
     font-size: 0.8rem;
     border: 0.1rem solid #A259FF;
     position: absolute;
-    margin-top: 25%;
+    margin-top: 30vh;
     left: calc(50% - 7vw);
     z-index: 10;
   }
@@ -99,6 +99,10 @@
 
   .input-container {
     margin-bottom: 1rem;
+  }
+  .input-container-name {
+    margin-bottom: 1rem;
+    width: 40%;
   }
 
   .labelData {

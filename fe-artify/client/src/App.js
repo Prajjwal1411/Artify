@@ -8,10 +8,9 @@ import Signup from "./Components/SignUp";
 import ProductCard from "./Reusables/ProductCard"; // Reusable Product Card Test
 import HomePage from "./Components/HomePage";
 import Profile from "./Components/Profile";
-import Popuptest from "./Components/Popuptest";
-import ArtworkForm from './Components/ArtworkForm';
-import HomePage from './Components/HomePage';
-import Profile from './Components/Profile'; 
+import ArtworkForm from "./Components/ArtworkForm"
+import ProductPage from "./Components/ProductPage"
+
 
 
 
@@ -20,9 +19,10 @@ function App() {
     <div className="App">
       <Router>
        <Routes>
-        <Route path='/uploadImage' element={<ArtworkForm/>}/>
-       <Route path="/homepage" element={<HomePage />} />
-        <Route path='/' element={<EditProfile/>}/>
+        <Route path='/UploadArt' element={<ArtworkForm/>}/>
+       <Route path="/" element={<HomePage />} />
+        <Route path='/editProfile' element={<EditProfile/>}/>
+        <Route path='/explore' element={<ProductPage/>}/>
         <Route path='/subscription' element={<SubscriptionPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
