@@ -6,14 +6,17 @@ import SubscriptionPage from './Components/SubscriptionPage';
 import Login from './Components/Login';
 import Signup from './Components/SignUp';
 import ProductCard from './Reusables/ProductCard'; // Reusable Product Card Test
+import ArtworkForm from './Components/ArtworkForm';
 import HomePage from './Components/HomePage';
 import Profile from './Components/Profile'; 
+
 
 function App() {
   return (
     <div className="App">
       <Router>
        <Routes>
+        <Route path='/uploadImage' element={<ArtworkForm/>}/>
        <Route path="/homepage" element={<HomePage />} />
         <Route path='/' element={<EditProfile/>}/>
         <Route path='/subscription' element={<SubscriptionPage/>}/>

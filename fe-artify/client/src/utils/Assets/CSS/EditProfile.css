@@ -10,6 +10,9 @@
     background-color: #2e5067;
     font-family: 'Arial', sans-serif;
   }
+  .header-container{
+    width:100%
+  }
 
   .background-image {
     width: 100%;
