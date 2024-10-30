@@ -54,6 +54,15 @@ const Header = () => {
               Upload Art
             </a>
           </li>
+          <li>
+            <a 
+              href="test-popup" 
+              className={activeLink === 'test-popup' ? 'active' : ''} 
+              onClick={() => handleLinkClick('test-popup')}
+            >
+              Test Popup
+            </a>
+          </li>
         </ul>
       </nav>
       <div className="search-container">
