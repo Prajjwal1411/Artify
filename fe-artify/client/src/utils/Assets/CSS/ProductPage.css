@@ -23,7 +23,7 @@
     margin-top: 10px;
     padding: 10px;
     width: 80%;
-    background-color: #395965;  
+    background-color: #ffffff;  
     border-color: #f9efb9;
     border-width: 3px;
     border-radius: 20px;
@@ -31,7 +31,7 @@
 
 .main-search::placeholder 
 {
-    color: white;
+    color: #395965;
 }
 
 .main-search:focus 
@@ -53,13 +53,27 @@
     color: #f9efb9;
 }
 
-.artwork-grid, .category-grid, .collection-grid {
+.category-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding-bottom: 4vh;
 }
 
+.artwork-grid
+{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 4vh;
+    padding-left: 25vh;  
+}
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 4vh;
+}
 .more-artworks-btn, .more-collections-btn
 {
     background-color: #4e00b2;
