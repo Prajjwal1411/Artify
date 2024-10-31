@@ -1,4 +1,4 @@
-.profile-page-container {
+.profile-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,11 +18,11 @@
     object-fit: cover;
 }
 
-.profile-photo {
+.profile-pic {
     position: absolute;
-    left: -38%;
-    bottom: -8%;
-    transform: translateX(-50%);
+    left: 0; 
+    bottom: -25%; 
+    transform: translateX(0); 
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -30,28 +30,29 @@
     border: 3px solid white;
 }
 
-.profile-photo img {
+.pic {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.user-info-section {
+.user-info {
     font-family: 'Work Sans', sans-serif;
     background-color: #385966;
-    padding: 20px;
+    padding-top: 10vh;
+    padding-left: 5vh;
     width: 100%;
     color: #ffffff;
     text-align: left;
 }
 
-.user-info-section h2 {
+.user-info h2 {
     color: #F8EFBA;
     font-size: 2rem;
     font-weight: bold;
 }
 
-.user-info-section p:first-of-type {
+.user-info p:first-of-type {
     color: #ffffff;
     font-size: 1.2rem;
 }
@@ -177,11 +178,9 @@
     width: 30%;
 }
 
-.edit-profile-button {
+.edit-profile-btn {
     width: 152px;
     height: 40px;
-    margin-bottom: 20px;
-    margin-right: 80px;
     background-color: #3D00B7;
     color: white;
     border: 2px solid #A259FF;
@@ -192,7 +191,7 @@
     transition: background-color 0.3s ease;
 }
 
-.edit-profile-button:hover {
+.edit-profile-btn:hover {
     background-color: #5D33CC; 
 }
 

@@ -33,7 +33,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="profile-page-container">
+        <div className="profile-page">
             <Header />
             <div className="background-image">
                 <img
@@ -41,18 +41,19 @@ const Profile = () => {
                     src="https://cdn.pixabay.com/photo/2022/10/10/07/58/mountain-7511116_1280.jpg"
                     alt="Background"
                 />
-                <div className="profile-photo">
+                <div className="profile-pic">
                     <img
                         src="https://media.istockphoto.com/id/1835504092/photo/the-bobcat-also-known-as-the-red-lynx-is-a-medium-sized-cat-native-to-north-america-it-ranges.jpg?s=2048x2048&w=is&k=20&c=I9vLSFG7fqt9V_07air8WacQ12evZZYaq1IYVGCifrE="
                         alt="Profile"
+                        className='pic'
                     />
                 </div>
             </div>
 
-            <div className="user-info-section">
+            <div className="user-info">
                 <div className="user-info-header">
                     <h2>Space Monk</h2>
-                    <button className="edit-profile-button" onClick={handleEditProfileClick}>
+                    <button className="edit-profile-btn" onClick={handleEditProfileClick}>
                         Edit Profile
                     </button>
                 </div>
