@@ -93,9 +93,14 @@ const Profile = () => {
             </div>
 
             <div className="product-section">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <div className="product-grid">
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                </div>
                 <button className="view-more-button">View More</button>
             </div>
 
