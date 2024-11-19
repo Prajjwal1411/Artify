@@ -109,7 +109,7 @@
   .description-group{
     text-align: left;
   }
-  input, textarea {
+  input,select, textarea {
     width: 100%;
     font-family: "Roboto",sans-serif;
     height: 6vh;
