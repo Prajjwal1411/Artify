@@ -1,11 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../utils/Assets/CSS/ReusableCard.css';
 
-const ReusableCard = ({ index, subscription, onClick }) => {
+const ReusableCard = ({ index, subscription }) => {
+  const navigate = useNavigate();
+
   // Define card background based on the index
   const cardClass = (index === 0) ? 'platinum-card' :
                     (index === 1) ? 'gold-card' :
                     (index === 2) ? 'silver-card' : '';
+
+  const handlePlanSelect = () => {
+    // Navigate to PaymentPage and pass subscription details
+    navigate('/payments', { state: { subscription } });
+  };
 
   return (
     <div className={`subscription-card ${cardClass}`}>
@@ -21,7 +29,7 @@ const ReusableCard = ({ index, subscription, onClick }) => {
           <li>No features available</li>
         )}
       </ul>
-      <button className="select-plan-btn" onClick={onClick}>Select Plan</button>
+      <button className="select-plan-btn" onClick={handlePlanSelect}>Select Plan</button>
     </div>
   );
 };
