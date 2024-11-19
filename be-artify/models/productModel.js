@@ -41,7 +41,8 @@ const productSchema=new mongoDb.Schema({
     productAddedOn:{
         type:Date,
         default:Date.now()
-    }
+    },
+
 
 });
 

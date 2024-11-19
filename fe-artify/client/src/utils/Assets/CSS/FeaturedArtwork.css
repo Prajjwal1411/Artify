@@ -1,0 +1,79 @@
+.featured-artwork-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: transparent; 
+}
+
+.featured-artwork-card {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 300px;
+  max-width: 100%;
+  margin: 10px;
+}
+
+.featured-main-image img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.featured-side-images {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.side-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.featured-details {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.artwork-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.creator-info {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.creator-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.creator-name {
+  font-size: 14px;
+  color: #555;
+}
+
+.total-items {
+  margin-top: 8px;
+  padding: 5px 10px;
+  background-color: #f4df8f;
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  display: inline-block;
+}

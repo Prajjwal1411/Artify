@@ -3,6 +3,9 @@ import '../utils/Assets/CSS/ProductPage.css';
 import Header from '../Reusables/Header';
 import Footer from '../Reusables/Footer';
 import ProductCard from '../Reusables/ProductCard';
+import ItemCard from '../Reusables/ItemCard';
+import FeaturedArtwork from '../Reusables/FeaturedArtwork';
+
 
 const ProductPage = () => {
   return (
@@ -17,17 +20,7 @@ const ProductPage = () => {
       <section className="featured-artwork">
       <h2 className='subheadings'>Featured Artwork</h2>
         <div className="artwork-grid">
-        <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-          <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-            <ProductCard 
+        <FeaturedArtwork 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
@@ -38,46 +31,27 @@ const ProductPage = () => {
       <section className="explore-categories">
         <h2 className='subheadings'>Explore Artworks</h2>
         <div className="category-grid">
-        <ProductCard 
+        <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-          <ProductCard 
+          <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-            <ProductCard 
+            <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-          <ProductCard 
+          <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-          <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-            <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-          <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-            <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
+          
         </div>
         <button className="more-artworks-btn">More Artworks</button>
       </section>
@@ -86,46 +60,27 @@ const ProductPage = () => {
       <h2 className='subheadings'>Trending Collection</h2>
       <p className='browse-para'>Checkout our weekly updated trending collection.</p>
         <div className="collection-grid">
-        <ProductCard 
+        <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-          <ProductCard 
+          <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-            <ProductCard 
+            <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-          <ProductCard 
+          <ItemCard 
             image="default-image.jpg" 
             title="Artwork Title"   
             onClick={() => console.log("Card Clicked")}
           />
-          <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-            <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-          <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
-            <ProductCard 
-            image="default-image.jpg" 
-            title="Artwork Title"   
-            onClick={() => console.log("Card Clicked")}
-          />
+          
         </div>
         <button className="more-collections-btn">More Collections</button>
       </section>
