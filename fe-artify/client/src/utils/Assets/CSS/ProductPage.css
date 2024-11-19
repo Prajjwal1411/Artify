@@ -1,6 +1,8 @@
 .product-page
 {
     background-color: #65939d;
+    flex-direction: column;
+    width: 100%;
 }
 .heading
 {
@@ -54,13 +56,15 @@
     background-color: #395965;
     color: #f9efb9;
 }
-
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr)); 
     gap: 20px;
     padding-bottom: 4vh;
+    width: 100%;
 }
+
+
 
 .artwork-grid
 {
@@ -90,3 +94,17 @@
 {
   background-color: #350277;
 }
+select {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 3px solid #f9efb9;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+  }
+  .explore-categories, .trending-collection {
+    width: 100%; /* Ensure it takes up the full width */
+    margin: 30px 0;
+  }
