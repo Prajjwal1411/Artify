@@ -21,6 +21,7 @@ const PaymentPage = () => {
 
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const detectCardType = (number) => {
     const patterns = {
@@ -28,31 +29,134 @@ const PaymentPage = () => {
       mastercard: /^5[1-5][0-9]{0,14}/,
       amex: /^3[47][0-9]{0,13}/,
     };
-  
+
     for (const [type, pattern] of Object.entries(patterns)) {
       if (pattern.test(number)) {
         return type;  // Returns the card type (visa, mastercard, etc.)
       }
     }
-  
+
     return null; // No match
+  };
+
+  const isLuhnValid = (number) => {
+    let sum = 0;
+    let shouldDouble = false;
+    for (let i = number.length - 1; i >= 0; i--) {
+      let digit = parseInt(number[i]);
+      if (shouldDouble) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+      sum += digit;
+      shouldDouble = !shouldDouble;
+    }
+    return sum % 10 === 0;
+  };
+
+  // Function to validate expiry date
+  const isExpiryValid = (expiry) => {
+    const [month, year] = expiry.split('/').map(Number);
+    if (!month || !year || month < 1 || month > 12) return false;
+    const today = new Date();
+    const expiryDate = new Date(`20${year}`, month - 1);
+    return expiryDate > today;
   };
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
-  
+    if (!/^\d*$/.test(value)) return;
+
     const cardType = detectCardType(value);
     setFormData((prevState) => ({
       ...prevState,
       cardNumber: value,
       cardType: cardType,
     }));
+
+    // Real-time validation for card number
+    const errors = { ...fieldErrors };
+    if (!isLuhnValid(value)) {
+      errors.cardNumber = 'Invalid card number.';
+    } else {
+      delete errors.cardNumber;
+    }
+    setFieldErrors(errors);
   };
 
-  const hardcodedDiscountCodes = {
-    SAVE20: 20,
-    WELCOME10: 10,
-    ARTIFY5: 5,
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // Update formData
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // Real-time validation for the field being updated
+    const errors = { ...fieldErrors };
+    if (name === "cardName" && !value.trim()) {
+      errors.cardName = "Cardholder's name is required.";
+    } else if (name === "expiry" && !isExpiryValid(value)) {
+      errors.expiry = "Invalid expiry date. Use MM/YY format.";
+    } else if (name === "cvv" && !/^\d{3,4}$/.test(value)) {
+      errors.cvv = "Invalid CVV. Must be 3 digits (4 for Amex).";
+    } else {
+      delete errors[name]; // Remove any errors when input is valid
+    }
+
+    setFieldErrors(errors); // Update field-specific errors
+  };
+
+  const handleDiscountApply = () => {
+    const hardcodedDiscountCodes = {
+      SAVE20: 20,
+      WELCOME10: 10,
+      ARTIFY5: 5,
+    };
+    if (hardcodedDiscountCodes[formData.discountCode.toUpperCase()]) {
+      setDiscount(hardcodedDiscountCodes[formData.discountCode.toUpperCase()]);
+      setErrorMessage('');
+    } else {
+      setDiscount(0);
+      setErrorMessage('Invalid discount code');
+      setTimeout(() => setErrorMessage(''), 4000);
+    }
+  };
+
+  const handleFormValidation = () => {
+    const errors = {};
+
+    if (!formData.cardName.trim()) errors.cardName = "Cardholder's name is required.";
+    if (!formData.cardNumber || !isLuhnValid(formData.cardNumber))
+      errors.cardNumber = 'Invalid card number.';
+    if (!formData.expiry || !isExpiryValid(formData.expiry))
+      errors.expiry = 'Invalid expiry date. Use MM/YY format.';
+    if (!formData.cvv || !/^\d{3,4}$/.test(formData.cvv))
+      errors.cvv = 'Invalid CVV. Must be 3 digits (4 for Amex).';
+
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handlePayNow = () => {
+    if (handleFormValidation()) {
+      alert('Payment successful!');
+      // Proceed with payment logic here
+    }
+  };
+
+  const handleClear = () => {
+    setFormData({
+      cardName: '',
+      cardNumber: '',
+      expiry: '',
+      cvv: '',
+      discountCode: '',
+    });
+    setDiscount(0);
+    setErrorMessage('');
+    setFieldErrors({});
   };
 
   if (!subscription) {
@@ -70,34 +174,6 @@ const PaymentPage = () => {
   const { subscriptionType, subscriptionPrice } = subscription;
   const taxes = (parseFloat(subscriptionPrice) * 0.13).toFixed(2);
   const totalAmount = (parseFloat(subscriptionPrice) - discount + parseFloat(taxes)).toFixed(2);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleDiscountApply = () => {
-    if (hardcodedDiscountCodes[formData.discountCode]) {
-      setDiscount(hardcodedDiscountCodes[formData.discountCode]);
-      setErrorMessage('');
-    } else {
-      setDiscount(0);
-      setErrorMessage('Invalid discount code');
-      setTimeout(() => setErrorMessage(''), 4000); // Clear error after 4 seconds
-    }
-  };
-
-  const handleClear = () => {
-    setFormData({
-      cardName: '',
-      cardNumber: '',
-      expiry: '',
-      cvv: '',
-      discountCode: '',
-    });
-    setDiscount(0); // Reset discount
-    setErrorMessage(''); // Reset error message
-  };
 
   return (
     <div className="payment-page-container">
@@ -121,6 +197,7 @@ const PaymentPage = () => {
                 required
                 style={{ backgroundColor: '#65939D' }}
               />
+              {fieldErrors.cardName && <p className="error-message">{fieldErrors.cardName}</p>}
             </label>
             <label>
               Card Number
@@ -131,7 +208,7 @@ const PaymentPage = () => {
                       formData.cardType === 'visa' ? visaIcon :
                       formData.cardType === 'mastercard' ? mastercardIcon :
                       formData.cardType === 'amex' ? amexIcon :
-                       ''
+                      ''
                     }
                     alt={`${formData.cardType} icon`}
                     className="card-icon"
@@ -146,6 +223,7 @@ const PaymentPage = () => {
                   maxLength="16"
                   style={{ backgroundColor: '#65939D' }}
                 />
+                {fieldErrors.cardNumber && <p className="error-message">{fieldErrors.cardNumber}</p>}
               </div>
             </label>
             <div className="expiry-cvv">
@@ -160,6 +238,7 @@ const PaymentPage = () => {
                   required
                   style={{ backgroundColor: '#65939D' }}
                 />
+                {fieldErrors.expiry && <p className="error-message">{fieldErrors.expiry}</p>}
               </label>
               <label>
                 CVV
@@ -169,9 +248,10 @@ const PaymentPage = () => {
                   value={formData.cvv}
                   onChange={handleInputChange}
                   required
-                  maxLength="3"
+                  maxLength="4"
                   style={{ backgroundColor: '#65939D' }}
                 />
+                {fieldErrors.cvv && <p className="error-message">{fieldErrors.cvv}</p>}
               </label>
             </div>
             <label>
@@ -193,7 +273,7 @@ const PaymentPage = () => {
             <button type="button" onClick={handleClear} className="clear-button">
               Clear
             </button>
-            <button className="pay-now-button" type="button">
+            <button type="button" onClick={handlePayNow} className="pay-now-button">
               Pay Now
             </button>
           </form>
