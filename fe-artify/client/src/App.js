@@ -11,6 +11,7 @@ import Profile from "./Components/Profile";
 import ArtworkForm from "./Components/ArtworkForm"
 import ProductPage from "./Components/ProductPage"
 import ProductDetails from "./Components/ProductDetails";
+import PaymentPage from './Components/PaymentPage';
 
 
 
@@ -31,6 +32,8 @@ function App() {
          <Route path='/profile' element={<Profile />} />
          <Route path="/productdetails" element={<ProductDetails />} />
          <Route path="/productdetails/:id" element={<ProductDetails />} /> {/* Test route for product detials by id */}
+         
+
         </Routes>
       </Router>
     </div>
