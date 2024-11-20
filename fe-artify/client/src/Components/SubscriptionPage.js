@@ -10,6 +10,8 @@ import { register } from '../utils/services/authServices';
 const SubscriptionPage = () => {
   const [subscriptions, setSubscriptions] = useState([]);
 
+  console.log(subscriptions.map(e => e._id));
+  
   const location = useLocation();
   const formData = location.state;
   console.log(formData,"1243")

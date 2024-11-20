@@ -31,8 +31,6 @@ function App() {
          <Route path='/profile' element={<Profile />} />
          <Route path="/productdetails" element={<ProductDetails />} />
          <Route path="/productdetails/:id" element={<ProductDetails />} /> {/* Test route for product detials by id */}
-         
-
         </Routes>
       </Router>
     </div>
