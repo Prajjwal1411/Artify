@@ -12,21 +12,73 @@ const Login = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  // Email validation function
+  const validateEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  };
+
+  // Password validation function (e.g., minLength, one uppercase, one number, one special char)
+  const validatePassword = (password) => {
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(password);
+  };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+
+    // Real-time validation for email
+    if (name === "email") {
+      if (!validateEmail(value)) {
+        setErrors({
+          ...errors,
+          email: "Please enter a valid email address.",
+        });
+      } else {
+        setErrors({
+          ...errors,
+          email: "",
+        });
+      }
+    }
+
+    // Real-time validation for password
+    if (name === "password") {
+      if (!validatePassword(value)) {
+        setErrors({
+          ...errors,
+          password: "Password must be at least 8 characters long, contain an uppercase letter, a number, and a special character.",
+        });
+      } else {
+        setErrors({
+          ...errors,
+          password: "",
+        });
+      }
+    }
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (errors.email || errors.password) {
+      setMessage("Please correct the errors before submitting.");
+      return;
+    }
+
     try {
-        let response=await login(formData)
-        setMessage(response.data);
-      }
-     catch (e) {
+      let response = await login(formData);
+      setMessage(response.data);
+    } catch (e) {
       setMessage(e.response.data.error);
     }
   };
@@ -55,6 +107,8 @@ const Login = () => {
               onChange={handleChange}
               required
             />
+            {errors.email && <p className="error-text">{errors.email}</p>}
+
             <input
               type="password"
               name="password"
@@ -64,6 +118,7 @@ const Login = () => {
               required
               minLength={8}
             />
+            {errors.password && <p className="error-text">{errors.password}</p>}
             <button type="submit">Login</button>
           </form>
           <p className="paragraph">Don't have an account?<Link to='/signup' className="signup-link">Sign Up</Link></p>
