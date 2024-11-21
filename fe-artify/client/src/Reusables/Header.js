@@ -5,11 +5,21 @@ import logo from '../utils/Assets/Images/logo.png';
 
 const Header = () => {
   const navigate = useNavigate();
+
+
+  let userID=localStorage.getItem('userID') || null;
+  const handleLinkClick = (link) => {
+    setActiveLink(link)
+  };
+
   const location = useLocation();
 
   const isActiveLink = (path) => location.pathname === path;
 
+
   return (
+
+    userID!==null ? 
     <header className="header">
       <img src={logo} alt="Artify Logo" className="logo" onClick={() => navigate('/')} />
       <div className="vertical-line"></div>
@@ -68,6 +78,43 @@ const Header = () => {
         Login
       </button>
     </header>
+
+    :
+    <header className="header">
+    <img src={logo} alt="Artify Logo" className="logo" onClick={()=>{navigate('/')}}/>
+    <div className="vertical-line"></div>
+    <nav className="navigation">
+      <ul>
+        <li>
+          <a 
+            href="#home" 
+            className={activeLink === 'Home' ? 'active' : ''} 
+            onClick={() => handleLinkClick('/')}
+          >
+            Home
+          </a>
+        </li>
+        <li>
+            <a 
+              href="/subscription" 
+              className={activeLink === 'Subscription' ? 'active' : ''} 
+              onClick={() => handleLinkClick('/subscription')}
+            >
+              Subscription
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+    <div className="search-container">
+      <input
+        type="text"
+        className="search-input"
+        placeholder="Search"
+      />
+    </div>
+    <button className="login-button" onClick={()=>{navigate('/login')}}>Login</button>
+  </header>
   );
 };
 
