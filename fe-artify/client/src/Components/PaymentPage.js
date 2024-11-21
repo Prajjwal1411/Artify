@@ -71,17 +71,18 @@ const PaymentPage = () => {
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
-
+  
     if (!/^\d*$/.test(value)) return;
+  
     const cardType = detectCardType(value);
-    cardType!=='amex' ? setMaxCVV(3) : setMaxCVV(4);
-
+    setMaxCVV(cardType === 'amex' ? 4 : 3); // Set max CVV length based on card type
+  
     setFormData((prevState) => ({
       ...prevState,
       cardNumber: value,
       cardType: cardType,
     }));
-
+  
     // Real-time validation for card number
     const errors = { ...fieldErrors };
     if (!isLuhnValid(value)) {
@@ -91,29 +92,35 @@ const PaymentPage = () => {
     }
     setFieldErrors(errors);
   };
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
+  
     // Update formData
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-
+  
     // Real-time validation for the field being updated
     const errors = { ...fieldErrors };
     if (name === "cardName" && !value.trim()) {
       errors.cardName = "Cardholder's name is required.";
     } else if (name === "expiry" && !isExpiryValid(value)) {
       errors.expiry = "Invalid expiry date. Use MM/YY format.";
-    } else if (name === "cvv" && !/^\d{3,4}$/.test(value)) {
-      errors.cvv = "Invalid CVV. Must be 3 digits (4 for Amex).";
+    } else if (name === "cvv") {
+      if (formData.cardType === 'amex' && !/^\d{4}$/.test(value)) {
+        errors.cvv = "Invalid CVV. Amex cards require a 4-digit CVV.";
+      } else if ((formData.cardType === 'visa' || formData.cardType === 'mastercard') && !/^\d{3}$/.test(value)) {
+        errors.cvv = "Invalid CVV. Visa/Mastercard require a 3-digit CVV.";
+      } else {
+        delete errors.cvv; 
+      }
     } else {
-      delete errors[name]; // Remove any errors when input is valid
+      delete errors[name]; 
     }
-
-    setFieldErrors(errors); // Update field-specific errors
+  
+    setFieldErrors(errors); 
   };
 
   const handleDiscountApply = () => {
