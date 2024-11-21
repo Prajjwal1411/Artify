@@ -27,6 +27,7 @@ const PaymentPage = () => {
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
+  const [maxCVV,setMaxCVV]=useState(0);
 
   const detectCardType = (number) => {
     const patterns = {
@@ -73,6 +74,8 @@ const PaymentPage = () => {
 
     if (!/^\d*$/.test(value)) return;
     const cardType = detectCardType(value);
+    cardType!=='amex' ? setMaxCVV(3) : setMaxCVV(4);
+
     setFormData((prevState) => ({
       ...prevState,
       cardNumber: value,
@@ -148,7 +151,7 @@ const PaymentPage = () => {
   const handlePayNow = () => {
     if (handleFormValidation()) {
       alert('Payment successful!');
-      // Proceed with payment logic here
+      
     }
   };
 
@@ -246,14 +249,15 @@ const PaymentPage = () => {
               <div className="card-number-container">
                 {formData.cardType && (
                   <img
-                    src={
-                      formData.cardType === 'visa' ? visaIcon :
-                      formData.cardType === 'mastercard' ? mastercardIcon :
-                      formData.cardType === 'amex' ? amexIcon :
-                      ''
-                    }
-                    alt={`${formData.cardType} icon`}
-                  />
+                  src={
+                    formData.cardType === 'visa' ? visaIcon :
+                    formData.cardType === 'mastercard' ? mastercardIcon :
+                    formData.cardType === 'amex' ? amexIcon :
+                    ''
+                  }
+                  alt={`${formData.cardType} icon`}
+                  className="card-type-icon"
+                />
                 )}
                 <input
                   type="text"
@@ -286,9 +290,10 @@ const PaymentPage = () => {
                   name="cvv"
                   value={formData.cvv}
                   onChange={handleInputChange}
+                  maxLength={maxCVV}
                   required
 
-                  maxLength="4"
+                  
                   style={{ backgroundColor: '#65939D' }}
 
 
