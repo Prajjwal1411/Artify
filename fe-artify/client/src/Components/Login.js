@@ -3,10 +3,12 @@ import '../utils/Assets/CSS/Login.css';
 import Header from "../Reusables/Header"
 import Footer from "../Reusables/Footer"
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../utils/services/authServices";
 
 const Login = () => {
+
+  const navigate=useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,13 +19,12 @@ const Login = () => {
     password: "",
   });
 
-  // Email validation function
+
   const validateEmail = (email) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   };
 
-  // Password validation function (e.g., minLength, one uppercase, one number, one special char)
   const validatePassword = (password) => {
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordPattern.test(password);
@@ -36,7 +37,7 @@ const Login = () => {
       [name]: value,
     });
 
-    // Real-time validation for email
+    
     if (name === "email") {
       if (!validateEmail(value)) {
         setErrors({
@@ -51,7 +52,7 @@ const Login = () => {
       }
     }
 
-    // Real-time validation for password
+    
     if (name === "password") {
       if (!validatePassword(value)) {
         setErrors({
@@ -77,7 +78,9 @@ const Login = () => {
 
     try {
       let response = await login(formData);
-      setMessage(response.data);
+      setMessage(response?.data || "Hold on !");
+      localStorage.setItem("userID", response ?.user?._id);
+      navigate('/');
     } catch (e) {
       setMessage(e.response.data.error);
     }
