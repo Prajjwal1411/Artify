@@ -75,8 +75,11 @@ const Header = () => {
           placeholder="Search"
         />
       </div>
-      <button className="login-button" onClick={() => navigate('/login')}>
-        Login
+      <button className="login-button" onClick={() => {
+        localStorage.removeItem("userID");
+        navigate('/login')
+        }}>
+        Logout
       </button>
     </header>
 
