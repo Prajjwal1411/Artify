@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../utils/Assets/CSS/Header.css';
 import logo from '../utils/Assets/Images/logo.png';
 
 const Header = () => {
+  const [activeLink, setActiveLink] = useState('Home');
   const navigate = useNavigate();
 
 
@@ -84,27 +85,24 @@ const Header = () => {
     <img src={logo} alt="Artify Logo" className="logo" onClick={()=>{navigate('/')}}/>
     <div className="vertical-line"></div>
     <nav className="navigation">
-      <ul>
-        <li>
-          <a 
-            href="#home" 
-            className={activeLink === 'Home' ? 'active' : ''} 
-            onClick={() => handleLinkClick('/')}
-          >
-            Home
-          </a>
-        </li>
-        <li>
-            <a 
-              href="/subscription" 
-              className={activeLink === 'Subscription' ? 'active' : ''} 
-              onClick={() => handleLinkClick('/subscription')}
+    <ul>
+          <li>
+            <button
+              className={isActiveLink('/') ? 'active' : ''}
+              onClick={() => navigate('/')}
+            >
+              Home
+            </button>
+          </li>
+          <li>
+            <button
+              className={isActiveLink('/subscription') ? 'active' : ''}
+              onClick={() => navigate('/subscription')}
             >
               Subscription
-            </a>
+            </button>
           </li>
-        
-      </ul>
+        </ul>
     </nav>
     <div className="search-container">
       <input

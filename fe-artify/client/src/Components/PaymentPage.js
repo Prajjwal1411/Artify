@@ -165,7 +165,7 @@ const PaymentPage = () => {
     setFieldErrors({});
 
     }
-  };
+  
 
   const handlePayment = async () => {
     if (!formData.cardName || !formData.cardNumber || !formData.expiry || !formData.cvv) {
