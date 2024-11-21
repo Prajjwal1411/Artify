@@ -66,7 +66,7 @@
 }
 
 .subscribe-container button {
-  padding: 6px 8px; 
+  padding: 10px 8px; 
   background-color: #B42C7F; 
   color: white; 
   border: none; 
@@ -79,5 +79,5 @@
   font-size: 11px; 
   margin-left: auto;
   height:37px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
