@@ -19,6 +19,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   transition: transform 0.2s;
+  padding-bottom: 50px;
 }
 
 .product-card:hover {
@@ -91,4 +92,5 @@ body {
 .creator-name {
   font-size: 16px; 
   margin-top: 15px; 
+  color: #ffffff;
 }

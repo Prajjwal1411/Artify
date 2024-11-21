@@ -1,30 +1,37 @@
 const productModel=require('../models/productModel')
 
 const getProductById = async (req, res) => {
-    try {
-      const productId = req.params.id; 
-      const product = await productModel.findById(productId);
-      
-      
-      if (!product) {
-        return res.status(404).json({
-          success: false,
-          message: 'Product not found',
-        });
-      }
+  try {
+    const productId = req.params.id;
+
   
-      res.status(200).json({
-        success: true,
-        product: product,
-      });
-    } catch (error) {
-      res.status(500).json({
+    const product = await productModel
+    .findById(productId)
+    .populate('sellerID', 'username profilePicture'); 
+
+    if (!product) {
+      return res.status(404).json({
         success: false,
-        message: 'An error occurred while fetching the product',
-        error: error.message,
+        message: 'Product not found',
       });
     }
-  };
+    
+    res.status(200).json({
+      success: true,
+      product: {
+        ...product.toObject(), 
+        creatorName: product.sellerID?.username || 'Unknown Creator',
+        creatorProfilePic: product.sellerID?.profilePic || null,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while fetching the product',
+      error: error.message,
+    });
+  }
+};
   
 
 const getHighestBids = async (req, res) => {

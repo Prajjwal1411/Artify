@@ -107,8 +107,8 @@ const PaymentPage = () => {
         <aside className="payment-left-div">
           <h2 className="payment-heading">Let's Make Payment</h2>
           <p>
-            To start your subscription, input your card details to make payment. 
-            You will be redirected to your bank's authorization page.
+            To start your subscription, input your card details to proceed with the payment. 
+            
           </p>
           <form className="payment-form">
             <label>
