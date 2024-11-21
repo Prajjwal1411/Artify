@@ -52,7 +52,7 @@
 }
 
 .product-details-creator-name {
-  color: #CA318E;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -188,17 +188,22 @@
 
 /* View More Button */
 .product-details-view-more-button {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 500;
   width: 200px;
   height: 50px;
   color: #000;
-  border-color: #3D00B7;
-  border: 10px;
   background-color: #FAD000;
-  border: none;
+  border:#3D00B7;
   border-radius: 20px;
   cursor: pointer;
   margin-bottom: 40px;
+  margin-left: 50px;
+}
+
+.product-details-view-more-button:hover{
+  background-color: #594c08;
+  color: #ffffff;
 }
 
 
@@ -223,7 +228,7 @@
 .auction-timer-box h3,
 .bid-input-box h3 {
   font-size: 18px;
-  color: #fff;
+  color: #002933;
   margin-bottom: 10px;
   text-align: center;
   font-family: 'Space Mono', monospace;
@@ -271,7 +276,10 @@
 .place-bid-button {
   width: 50%;
   padding: 10px;
+  font-weight:500;
   background-color: #3D00B7;
+  margin-top: 20px;
+  font-size: 16px;
   color: #fff;
   border: none;
   border-radius: 50px;
@@ -317,13 +325,13 @@
 }
 
 .time-value {
-  font-size: 30px;
+  font-size: 42px;
   font-weight: bold;
-  color: #ffffff;
+  color: #002933;
 }
 
 .timer-label {
   font-size: 14px;
-  color: #F8EFBA;
+  color: #002933;
   margin-top: 5px;
 }
