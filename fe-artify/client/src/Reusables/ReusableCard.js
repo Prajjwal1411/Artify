@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../utils/Assets/CSS/ReusableCard.css';
 
-const ReusableCard = ({ index, subscription }) => {
+const ReusableCard = ({ index, subscription,payload }) => {
   const navigate = useNavigate();
 
   // Define card background based on the index
@@ -12,7 +12,9 @@ const ReusableCard = ({ index, subscription }) => {
 
   const handlePlanSelect = () => {
     // Navigate to PaymentPage and pass subscription details
-    navigate('/payments', { state: { subscription } });
+    
+    console.log(subscription + " data" + payload)
+    navigate('/payments', { state: { subscription,payload}});
   };
 
   return (

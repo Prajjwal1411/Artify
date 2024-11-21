@@ -1,72 +1,69 @@
-import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
-import '../utils/Assets/CSS/Header.css'; 
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import '../utils/Assets/CSS/Header.css';
 import logo from '../utils/Assets/Images/logo.png';
 
-
 const Header = () => {
-  const [activeLink, setActiveLink] = useState('Home');
-
   const navigate = useNavigate();
 
+
   let userID=localStorage.getItem('userID') || null;
-  console.log(userID)
   const handleLinkClick = (link) => {
     setActiveLink(link)
   };
+
+  const location = useLocation();
+
+  const isActiveLink = (path) => location.pathname === path;
+
 
   return (
 
     userID!==null ? 
     <header className="header">
-      <img src={logo} alt="Artify Logo" className="logo" onClick={()=>{navigate('/')}}/>
+      <img src={logo} alt="Artify Logo" className="logo" onClick={() => navigate('/')} />
       <div className="vertical-line"></div>
       <nav className="navigation">
         <ul>
           <li>
-            <a 
-              href="#home" 
-              className={activeLink === 'Home' ? 'active' : ''} 
-              onClick={() => handleLinkClick('/')}
+            <button
+              className={isActiveLink('/') ? 'active' : ''}
+              onClick={() => navigate('/')}
             >
               Home
-            </a>
+            </button>
           </li>
           <li>
-            <a 
-              href="/subscription" 
-              className={activeLink === 'Subscription' ? 'active' : ''} 
-              onClick={() => handleLinkClick('/subscription')}
+            <button
+              className={isActiveLink('/subscription') ? 'active' : ''}
+              onClick={() => navigate('/subscription')}
             >
               Subscription
-            </a>
+            </button>
           </li>
           <li>
-            <a 
-              href="/explore" 
-              className={activeLink === 'Explore Art' ? 'active' : ''} 
-              onClick={() => handleLinkClick('/explore')}
+            <button
+              className={isActiveLink('/explore') ? 'active' : ''}
+              onClick={() => navigate('/explore')}
             >
               Explore Art
-            </a>
+            </button>
           </li>
           <li>
-            <a 
-              href="/UploadArt" 
-              className={activeLink === 'Upload Art' ? 'active' : ''} 
-              onClick={() => handleLinkClick('/UploadArt')}
+            <button
+              className={isActiveLink('/UploadArt') ? 'active' : ''}
+              onClick={() => navigate('/UploadArt')}
             >
               Upload Art
-            </a>
+            </button>
           </li>
           <li>
-            <a 
-              href="test-popup" 
-              className={activeLink === 'test-popup' ? 'active' : ''} 
-              onClick={() => handleLinkClick('test-popup')}
+            <button
+              className={isActiveLink('/test-popup') ? 'active' : ''}
+              onClick={() => navigate('/test-popup')}
             >
               Test Popup
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
@@ -77,7 +74,9 @@ const Header = () => {
           placeholder="Search"
         />
       </div>
-      <button className="login-button" onClick={()=>{navigate('/login')}}>Login</button>
+      <button className="login-button" onClick={() => navigate('/login')}>
+        Login
+      </button>
     </header>
 
     :

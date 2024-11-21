@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Reusables/Header';
 import Footer from '../Reusables/Footer';
 import '../utils/Assets/CSS/PaymentPage.css';
+import { register } from '../utils/services/authServices';
 import visaIcon from '../utils/Assets/Images/visa.png';
 import mastercardIcon from '../utils/Assets/Images/mastercard.png';
 import amexIcon from '../utils/Assets/Images/amex.png';
 
 const PaymentPage = () => {
-  const { state } = useLocation();
+  const { state } = useLocation(); // Contains user and subscription data
+  const navigate = useNavigate();
   const subscription = state?.subscription;
+  const userData=state?.payload;
+
+  console.log(state.payload + "data")
 
   const [formData, setFormData] = useState({
     cardName: '',
@@ -28,19 +33,16 @@ const PaymentPage = () => {
       mastercard: /^5[1-5][0-9]{0,14}/,
       amex: /^3[47][0-9]{0,13}/,
     };
-  
     for (const [type, pattern] of Object.entries(patterns)) {
       if (pattern.test(number)) {
-        return type;  // Returns the card type (visa, mastercard, etc.)
+        return type;
       }
     }
-  
-    return null; // No match
+    return null;
   };
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
-  
     const cardType = detectCardType(value);
     setFormData((prevState) => ({
       ...prevState,
@@ -53,6 +55,58 @@ const PaymentPage = () => {
     SAVE20: 20,
     WELCOME10: 10,
     ARTIFY5: 5,
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleDiscountApply = () => {
+    if (hardcodedDiscountCodes[formData.discountCode]) {
+      setDiscount(hardcodedDiscountCodes[formData.discountCode]);
+      setErrorMessage('');
+    } else {
+      setDiscount(0);
+      setErrorMessage('Invalid discount code');
+      setTimeout(() => setErrorMessage(''), 4000);
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!formData.cardName || !formData.cardNumber || !formData.expiry || !formData.cvv) {
+      setErrorMessage('Please fill out all required fields.');
+      return;
+    }
+    console.log(userData)
+    const payload = {
+      
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      password: userData.password,
+      subscriptionID: subscription._id,
+      subscriptionStartDate: new Date(),
+      subscriptionEndDate: (() => {
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 1);
+        return endDate;
+      })(),
+      profilePicture: userData.profilePicture || '',
+      coverPicture: userData.coverPicture || '',
+    };
+
+    try {
+      const response = await register(payload);
+      if (response.success) {
+        navigate('/success');
+      } else {
+        setErrorMessage(response.msg || 'Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      setErrorMessage('An error occurred. Please try again.');
+    }
   };
 
   if (!subscription) {
@@ -71,44 +125,15 @@ const PaymentPage = () => {
   const taxes = (parseFloat(subscriptionPrice) * 0.13).toFixed(2);
   const totalAmount = (parseFloat(subscriptionPrice) - discount + parseFloat(taxes)).toFixed(2);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleDiscountApply = () => {
-    if (hardcodedDiscountCodes[formData.discountCode]) {
-      setDiscount(hardcodedDiscountCodes[formData.discountCode]);
-      setErrorMessage('');
-    } else {
-      setDiscount(0);
-      setErrorMessage('Invalid discount code');
-      setTimeout(() => setErrorMessage(''), 4000); // Clear error after 4 seconds
-    }
-  };
-
-  const handleClear = () => {
-    setFormData({
-      cardName: '',
-      cardNumber: '',
-      expiry: '',
-      cvv: '',
-      discountCode: '',
-    });
-    setDiscount(0); // Reset discount
-    setErrorMessage(''); // Reset error message
-  };
-
   return (
     <div className="payment-page-container">
       <Header />
       <div className="payment-page-main">
-        {/* Left Section */}
         <aside className="payment-left-div">
           <h2 className="payment-heading">Let's Make Payment</h2>
           <p>
-            To start your subscription, input your card details to make payment. 
-            You will be redirected to your bank's authorization page.
+            To start your subscription, input your card details to proceed with the payment. 
+            
           </p>
           <form className="payment-form">
             <label>
@@ -119,7 +144,6 @@ const PaymentPage = () => {
                 value={formData.cardName}
                 onChange={handleInputChange}
                 required
-                style={{ backgroundColor: '#65939D' }}
               />
             </label>
             <label>
@@ -131,10 +155,9 @@ const PaymentPage = () => {
                       formData.cardType === 'visa' ? visaIcon :
                       formData.cardType === 'mastercard' ? mastercardIcon :
                       formData.cardType === 'amex' ? amexIcon :
-                       ''
+                      ''
                     }
                     alt={`${formData.cardType} icon`}
-                    className="card-icon"
                   />
                 )}
                 <input
@@ -144,7 +167,6 @@ const PaymentPage = () => {
                   onChange={handleCardNumberChange}
                   required
                   maxLength="16"
-                  style={{ backgroundColor: '#65939D' }}
                 />
               </div>
             </label>
@@ -158,7 +180,6 @@ const PaymentPage = () => {
                   onChange={handleInputChange}
                   placeholder="MM/YY"
                   required
-                  style={{ backgroundColor: '#65939D' }}
                 />
               </label>
               <label>
@@ -170,7 +191,6 @@ const PaymentPage = () => {
                   onChange={handleInputChange}
                   required
                   maxLength="3"
-                  style={{ backgroundColor: '#65939D' }}
                 />
               </label>
             </div>
@@ -182,7 +202,6 @@ const PaymentPage = () => {
                   name="discountCode"
                   value={formData.discountCode}
                   onChange={handleInputChange}
-                  style={{ backgroundColor: '#65939D' }}
                 />
                 <button type="button" onClick={handleDiscountApply}>
                   Apply
@@ -190,16 +209,11 @@ const PaymentPage = () => {
               </div>
             </label>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button type="button" onClick={handleClear} className="clear-button">
-              Clear
-            </button>
-            <button className="pay-now-button" type="button">
+            <button className="pay-now-button" type="button" onClick={handlePayment}>
               Pay Now
             </button>
           </form>
         </aside>
-
-        {/* Right Section */}
         <div className="payment-right-div">
           <div className="payment-details-box">
             <h3 className="payment-summary-title">You're paying</h3>
