@@ -188,6 +188,7 @@ const PaymentPage = () => {
       firstName: userData.firstName,
       lastName: userData.lastName,
       email: userData.email,
+      userName:userData.userName,
       password: userData.password,
       subscriptionID: subscription._id,
       subscriptionStartDate: new Date(),
@@ -203,7 +204,7 @@ const PaymentPage = () => {
     try {
       const response = await register(payload);
       if (response.success) {
-        navigate('/success');
+        navigate('/login');
       } else {
         setErrorMessage(response.msg || 'Registration failed. Please try again.');
       }
@@ -327,7 +328,7 @@ const PaymentPage = () => {
             <button type="button" onClick={handleClear} className="clear-button">
               Clear
             </button>
-            <button type="button" onClick={handlePayNow} className="pay-now-button">
+            <button type="button" onClick={handlePayment} className="pay-now-button">
 
               Pay Now
             </button>

@@ -153,6 +153,14 @@ const SignUp = () => {
             />
             </div>
             <input
+              type="text"
+              name="userName"
+              placeholder="Username"
+              value={formData.userName}
+              onChange={handleChange}
+              required
+            />
+            <input
               type="email"
               name="email"
               placeholder="Email Address"

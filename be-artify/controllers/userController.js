@@ -11,6 +11,7 @@ const register = (req, res) => {
       const uObj = new UserModel();
       uObj.firstName = req.body.firstName;
       uObj.lastName = req.body.lastName;
+      uObj.userName=req.body.userName;
       uObj.password = bcrypt.hashSync(req.body.password, number);
       uObj.email = req.body.email;
       uObj.subscriptionID = req.body.subscriptionID;
