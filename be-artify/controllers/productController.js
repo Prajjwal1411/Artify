@@ -56,35 +56,76 @@ const getHighestBids = async (req, res) => {
     }
 };
 
-const saveProducts = (req, res) => {
+const saveProducts = async (req, res) => {
+  try {
+    const {
+      productImage,
+      productName,
+      description,
+      startingBid,
+      sellerID,
+      categoryID,
+      email,
+    } = req.body;
 
-    try{
-    const { productImage, productName, description, startingBid, sellerID, categoryID } = req.body;
+    // Create a new product instance
     const pObj = new productModel();
-      pObj.productImage = productImage;
-      pObj.productName = productName;
-      pObj.description = description;
-      pObj.startingBid = startingBid;
-      pObj.sellerID = sellerID;
-      pObj.categoryID =categoryID;
+    pObj.productImage = productImage;
+    pObj.productName = productName;
+    pObj.description = description;
+    pObj.startingBid = startingBid;
+    pObj.sellerID = sellerID;
+    pObj.categoryID = categoryID;
 
-      pObj.save().then(() => {
-        res.json({
-          status: 200,
-          success: true,
-          msg: "Data is saved to database successfully",
-        });
-      });
-    }
-    catch (error){
-        res.json({
-            status: 500,
-            success: false,
-            msg: "Error saving producy"+ error,
-          });
+    // Save product to the database
+    await pObj.save();
 
-    }
-}
+    const emailId = process.env.APP_EMAIL_ID;
+    const appPassword = process.env.APP_PASSWORD;
+    // Configure SMTP Transport
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: emailId,
+        pass: appPassword,
+      },
+    });
+
+    // Define the email options
+    const mailOptions = {
+      from: `"Artify" <${emailId}>`,
+      to: email,
+      subject: "Product Upload Confirmation",
+      text: `Hello, your product "${productName}" has been successfully uploaded!`,
+      html: `<p>Hello,</p>
+             <p>Your product <strong>${productName}</strong> has been successfully uploaded!</p>
+             <h5>Product Details</h5>
+             <p>Product Name: ${productName}</p>
+             <p>Product Image Link: ${productImage}</p>
+             <p>Product Starting Bid: ${startingBid}</p>
+             <p>Product Description: ${description}</p>
+             <p>Thank you for using our service.</p>`,
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    // Send a response back to the client
+    res.json({
+      status: 200,
+      success: true,
+      msg: "Data is saved to database successfully and confirmation email sent!",
+    });
+  } catch (error) {
+    res.json({
+      status: 500,
+      success: false,
+      msg: `Error saving product: ${error.message}`,
+    });
+  }
+};
 
 const getProducts = (req,res) =>{
 
