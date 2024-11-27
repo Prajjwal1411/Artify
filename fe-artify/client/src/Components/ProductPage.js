@@ -25,6 +25,8 @@ const ProductPage = () => {
         const products = productResponse.data.data;
 
         // Fetch seller details for each product
+        const currentTime = new Date();
+
         const productsWithSellers = await Promise.all(
           products.map(async (product) => {
             if (product.sellerID) {
@@ -43,9 +45,16 @@ const ProductPage = () => {
             return { ...product, sellerDetails: null }; // Default if no seller
           })
         );
-
+         // Filter out expired products
+      const validProducts = productsWithSellers.filter((product) => {
+      const productAddedDate = new Date(product.productAddedOn);
+      const endTime = new Date(productAddedDate.getTime() + 168 * 60 * 60 * 1000); // 96 hours later
+      return currentTime < endTime; // Only include products where time has not expired
+     });
         setProducts(productsWithSellers);
         setFilteredProducts(productsWithSellers); // Initial display
+        setProducts(validProducts);
+        setFilteredProducts(validProducts); 
       } catch (err) {
         setError('An error occurred while fetching products.');
       } finally {
