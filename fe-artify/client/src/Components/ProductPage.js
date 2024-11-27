@@ -133,9 +133,12 @@ const ProductPage = () => {
         <h2 className="subheadings">Explore Artworks</h2>
         <select onChange={handleCategoryChange}>
           <option value="">Filter by Category</option>
-          <option value="1">Category 1</option>
-          <option value="2">Category 2</option>
-          <option value="3">Category 3</option>
+          <option value="1">Abstract</option>
+          <option value="2">Landscape</option>
+          <option value="3">Portrait</option>
+          <option value="3">Realism</option>
+          <option value="3">Pop Art</option>
+          <option value="3">Others</option>
         </select>
         <div className="category-grid">
           <ItemCard products={filteredProducts} />
