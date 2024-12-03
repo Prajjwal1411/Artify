@@ -1,27 +1,44 @@
 .subscription-page {
-    text-align: center;
-    background-color: #65939d; 
-    border-radius: 8px;
-  }
-  
+  text-align: center;
+  background-color: #65939d;
+  border-radius: 8px;
+  padding: 20px; 
+}
+
+.page-title {
+  padding-top: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #f9efb9;
+}
+
+.page-description {
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.subscription-cards-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+  gap: 20px; 
+}
+
+@media (max-width: 768px) {
   .page-title {
-    padding-top: 30px;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #f9efb9;
+      font-size: 1.5rem; 
   }
-  
+
   .page-description {
-    margin-bottom: 30px;
-    color: #ffffff; 
+      font-size: 0.9rem; 
   }
-  
+
   .subscription-cards-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding-bottom: 40px;
+      flex-direction: column; 
+      align-items: center; 
+      gap: 20px; 
   }
-  
-  
+}
