@@ -10,39 +10,36 @@
     background-color: #385966;
     color: #ffeb3b;
     font-family: Arial, sans-serif;
-  }
-  
-  .artwork-form-container h2 {
+}
+
+.artwork-form-container h2 {
     font-family: "Work Sans", sans-serif;
     text-align: left;
     color: #F8EFBA;
+}
 
-
-  }
-  h2{
-    font-size: 3rem;
+h2 {
+    font-size: 2.5rem;
     padding-bottom: 1%;
-    /* border-bottom: 1px solid #F8EFBA; */ /* Underline of Border Fix */
-    
-  }
-  .file-upload {
-    
+}
+
+.file-upload {
     margin: 3% auto 20px;
     text-align: center;
     margin-bottom: 20px;
-    width: 50%;
+    width: 100%;
+    max-width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 50vh;
     border-radius: 0.5rem;
     background: #65939D;
+}
 
-  }
-  
-  .file-upload-label {
+.file-upload-label {
     display: flex;
-    width: 95%;
+    width: 90%;
     height: 80%;
     border: 2px dashed #ffffff;
     padding: 20px;
@@ -53,96 +50,158 @@
     cursor: pointer;
     font-size: 1rem;
     color: #ffffff;
-  }
-  h3{
+}
+
+h3 {
     font-family: "Work Sans", sans-serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #F8EFBA;
-    /* border-bottom: 1px solid #F8EFBA;  */
     padding-bottom: 1%;
     margin-bottom: 2%;
     text-align: left;
-  }
-  .form-section-group{
-    width:80%;
-    padding-left: 35vh;
-  }
- 
+}
 
-  .file-upload-box p {
+.form-section-group {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.file-upload-box p {
     margin: 5px 0;
-  }
-  
-  .file-input {
+}
+
+.file-input {
     display: none;
-  }
-  
-  .form-section {
-    padding-top: 20px;
-  }
-  
-  .form-section h3 {
-    color: #ffeb3b;
-    margin-bottom: 10px;
-  }
-  
-  .form-group {
+}
+
+.form-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 10px;
-  }
-  .form-label{
+}
+
+.form-label {
     width: 100%;
     text-align: left;
+}
 
-  }
-  label{
+label {
     color: #ffffff;
     padding-bottom: 1rem;
     text-align: left;
-  }
-  .category-group{
+}
+
+.category-group {
     text-align: left;
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-  .description-group{
+}
+
+.description-group {
     text-align: left;
-  }
-  input,select, textarea {
+}
+
+input,
+select,
+textarea {
     width: 100%;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto", sans-serif;
     height: 6vh;
     padding: 10px;
     margin: 5px 0;
     border: none;
     border-radius: 4px;
     background-color: #65939D;
-    color:#3B3B3B;
-    ;
+    color: #3B3B3B;
     font-size: 16px;
-  }
-  
-  textarea {
-    height:15rem;
-    font-family: "Work Sans",sans-serif;
-  }
-  
-  .submit-button {
-    width: 15%;
+}
+
+textarea {
+    height: 15rem;
+    font-family: "Work Sans", sans-serif;
+}
+
+.submit-button {
+    width: 100%;
+    max-width: 200px;
     padding: 2vh;
     border: none;
-    margin-top: 3vw;
+    margin: 3vw auto 0;
     border-radius: 2rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background: linear-gradient(90deg, #FAD000 20%, #947B00 80%);
     color: black;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .submit-button:hover {
+    text-align: center;
+}
+
+.submit-button:hover {
     background-color: #ffdb3b;
-  }
-  
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .file-upload {
+        width: 90%;
+        height: 40vh;
+    }
+
+    .file-upload-label {
+        font-size: 0.9rem;
+    }
+
+    .form-section-group {
+        padding: 0 10px;
+    }
+
+    .form-group {
+        flex-direction: column;
+    }
+
+    .submit-button {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .file-upload {
+        height: 30vh;
+    }
+
+    .form-group {
+        gap: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 14px;
+    }
+
+    .submit-button {
+        font-size: 0.9rem;
+        padding: 1.5vh;
+    }
+}

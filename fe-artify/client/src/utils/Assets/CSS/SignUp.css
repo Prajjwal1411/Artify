@@ -1,95 +1,170 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .main {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-  }
-  
-  .container {
-    display: flex;
-    width: 100%;
-    height:100%;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .name{
-    display: flex;
-    justify-content: space-between;
-  }
-  .container .image {
-    flex: 0.5 1.6;
-    /* https://www.vectorstock.com/royalty-free-vector/cosmonaut-vector-38239546 */
-    background-image: url('../Images/signup-banner.jpg');
-    background-size:cover;
-    background-position: center;
-  }
-  
-  .container .form-container {
-    flex: 1;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #2f4858;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Container to hold image and form side by side on desktop */
+.container {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Left side image section */
+.container .image {
+  flex: 0.5 1.6;
+  background-image: url('../Images/signup-banner.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Right side form section */
+.container .form-container {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2f4858;
+}
+
+.container .form-container h2 {
+  color: #f6e58d;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.container .form-container p {
+  color: #d1d8e0;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Name fields in one row on desktop */
+.name {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form-container input {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 50px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: #f6e58d;
+}
+
+.form-container button {
+  padding: 1rem;
+  background-color: #6c5ce7;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #341f97;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Styles */
+
+/* Tablet View: Adjusting spacing and making the layout more comfortable on medium screens */
+@media (max-width: 768px) {
   .container .form-container h2 {
-    color: #f6e58d;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
   }
-  
+
   .container .form-container p {
-    color: #d1d8e0;
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 0.9rem;
   }
-  
+
   .form-container form {
-    display: flex;
+    width: 70%;
+  }
+
+  .name {
     flex-direction: column;
-    width: 50%;
+    gap: 0;
   }
-  input{
-    width: auto;
+}
+
+/* Mobile View: Stacking the image and form vertically */
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    height: auto;
   }
-  .form-container input {
-    padding: 1rem;
+
+  .container .image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .container .form-container {
+    padding: 1.5rem;
+  }
+
+  .container .form-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .container .form-container p {
+    font-size: 0.85rem;
     margin-bottom: 1.5rem;
-    border: 1px solid #cfd8dc;
-    border-radius: 50px;
+  }
+
+  .form-container form {
+    width: 90%;
+  }
+
+  .form-container input, 
+  .form-container button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .submit {
     font-size: 1rem;
   }
-  
-  .form-container input:focus {
-    outline: none;
-    border-color: #f6e58d;
-  }
-  
-  .form-container button {
-    padding: 1rem;
-    background-color: #6c5ce7;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .form-container button:hover {
-    background-color: #341f97;
-  }
-  
+}
