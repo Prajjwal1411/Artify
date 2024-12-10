@@ -30,7 +30,6 @@ function App() {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/productcard' element={<ProductCard />} /> {/* Test Route for reusable cards */}
          <Route path='/profile' element={<Profile />} />
-         <Route path="/productdetails" element={<ProductDetails />} />
          <Route path="/productdetails/:id" element={<ProductDetails />} /> {/* Test route for product detials by id */}
          <Route path="/payments" element={<PaymentPage />} />
          
