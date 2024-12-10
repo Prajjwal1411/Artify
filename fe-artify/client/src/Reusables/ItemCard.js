@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../utils/Assets/CSS/ItemCard.css';
 
 const ItemCard = ({ products }) => {
   if (!products || products.length === 0) {
     return <div>No products found.</div>;
   }
-  
+
   // Function to calculate the remaining time
   const getRemainingTime = (addedTime) => {
     const productAddedDate = new Date(addedTime); // parse productAddedOn time
-    const endTime = new Date(productAddedDate.getTime() + 168 * 60 * 60 * 1000); // 96 hours later
+    const endTime = new Date(productAddedDate.getTime() + 168 * 60 * 60 * 1000); // 168 hours later
     const currentTime = new Date();
     const timeDiff = endTime - currentTime; // remaining time in milliseconds
 
@@ -25,7 +26,7 @@ const ItemCard = ({ products }) => {
   return (
     <div className="item-card-wrapper">
       {products.map((product) => (
-        <div className="item-card" key={product._id}>
+        <Link to={`/productdetails/${product._id}`} className="item-card" key={product._id}>
           <img
             src={product.productImage}
             alt={product.productName}
@@ -63,11 +64,11 @@ const ItemCard = ({ products }) => {
               )}
             </div>
             <section className="bottomsec">
-            <div className="time-remaining">{getRemainingTime(product.productAddedOn)}</div>
-            <button className="bid-button">Submit Bid</button>
+              <div className="time-remaining">{getRemainingTime(product.productAddedOn)}</div>
+              <button className="bid-button">Submit Bid</button>
             </section>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
