@@ -133,8 +133,7 @@ const SignUp = () => {
               {message}
             </p>
           )}
-          <form onSubmit={handleSubmit}>
-            <div class="name"> 
+          <form onSubmit={handleSubmit}> 
             <input
               type="text"
               name="firstName"
@@ -151,7 +150,7 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
-            </div>
+            
             <input
               type="text"
               name="userName"

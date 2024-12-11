@@ -1,23 +1,33 @@
+/* General Header Styles */
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   background-color: #0a424c;
   color: white;
   font-family: 'DM Sans', sans-serif;
+  position: relative;
+  padding: 10px 20px;
 }
 
 .logo {
   height: auto;
   max-height: 60px;
-  margin-right: 20px;
   cursor: pointer;
 }
 
 .vertical-line {
   border-left: 2px solid #ffffff;
   height: 80px;
-  margin-right: 20px;
+  margin: 0 20px; 
+}
+
+.navigation {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  transition: transform 0.3s ease-in-out;
 }
 
 .navigation ul {
@@ -36,10 +46,6 @@
   font-family: 'DM Sans', sans-serif;
   transition: color 0.3s, font-weight 0.3s;
   padding: 0;
-}
-
-.navigation button:hover {
-  color: white;
 }
 
 .navigation button.active {
@@ -62,23 +68,190 @@
   color: black;
 }
 
-.search-input::placeholder {
-  color: #bbb;
-}
-
 .login-button {
   padding: 10px 20px;
   border: none;
-  width: 80px;
-  height: 40px;
   border-radius: 20px;
   background-color: #6C3BAA;
   color: white;
-  margin-left: 20px;
+  margin-left: 50px;
   font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  max-width: 100px;
+}
+
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+  max-width: 50px;
+  background-color: transparent;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: white;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.navigation.show {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #385966;
+  opacity: 0.8;
+}
+
+/* Profile Button Styling */
+.profile-button {
+  display: none;
+  width: 45px; 
+  height: 45px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 15px;
   cursor: pointer;
 }
 
-.login-button:hover {
-  background-color: #A259FF;
+.profile-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tablet View Adjustments */
+@media (max-width: 1024px) {
+  .navigation {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0a424c;
+    padding: 20px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navigation ul {
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+  }
+
+  .navigation.show {
+    transform: translateY(0);
+  }
+
+  .hamburger-menu {
+    display: flex;
+    max-width: 50px;
+  }
+
+  .search-container {
+    display: block;
+    margin: 10px 0;
+    width: 45%;
+  }
+
+  .search-input {
+    width: 100%; 
+    padding: 12px;
+    font-size: 16px;
+  }
+  .profile-button {
+    display: block;
+    width: 50px; 
+    height: 50px;
+    margin-left: 15px;
+  }
+
+  .profile-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+  .vertical-line {
+    display: none; 
+  }
+
+  .navigation ul {
+    gap: 10px; 
+  }
+
+  .navigation button {
+    font-size: 16px;
+  }
+
+  .login-button {
+    width: 100%; 
+    text-align: center;
+    
+  }
+
+  .navigation {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0a424c;
+    padding: 20px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    max-width: 50px;
+  }
+
+  .search-container {
+    display: block; 
+    margin: 10px 0;
+  }
+
+  .search-input {
+    width: 100%; 
+    font-size: 16px;
+  }
+  .profile-button {
+    display: block; 
+    width: 60px; 
+    height: 60px;
+    margin-left: 10px; 
+  }
+
+  .profile-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
