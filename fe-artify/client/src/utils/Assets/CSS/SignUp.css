@@ -1,95 +1,184 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .main {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh; 
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex-wrap: wrap; 
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .image {
+  flex: 1 1 40%;
+  background-image: url('../Images/signup-banner.jpg');
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;
+  height: 100%; 
+  min-height: 700px; 
+}
+
+.container .form-container {
+  flex: 1 1 60%; 
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2f4858;
+}
+
+.container .form-container h2 {
+  color: #f6e58d;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.container .form-container p {
+  color: #d1d8e0;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+input {
+  width: 100%;
+}
+
+.form-container input {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 50px;
+  font-size: 1rem;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: #f6e58d;
+}
+
+.form-container button {
+  padding: 1rem;
+  background-color: #6c5ce7;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 200px;
+  align-self: center;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #341f97;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) { 
   .container {
-    display: flex;
-    width: 100%;
-    height:100%;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    flex-direction: column; 
+    height: auto; 
   }
-  
-  .name{
-    display: flex;
-    justify-content: space-between;
-  }
+
   .container .image {
-    flex: 0.5 1.6;
-    /* https://www.vectorstock.com/royalty-free-vector/cosmonaut-vector-38239546 */
-    background-image: url('../Images/signup-banner.jpg');
-    background-size:cover;
-    background-position: center;
+    flex: 0 1 auto; 
+    min-height: 700px; 
   }
-  
+
   .container .form-container {
-    flex: 1;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #2f4858;
+    flex: 0 1 auto;
+    height: auto;
+    padding: 1.5rem;
   }
-  
-  .container .form-container h2 {
-    color: #f6e58d;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+
+  .form-container h2 {
+    font-size: 2rem;
   }
-  
-  .container .form-container p {
-    color: #d1d8e0;
+
+  .form-container p {
     font-size: 1rem;
-    margin-bottom: 2rem;
   }
-  
+
   .form-container form {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+    width: 80%;
   }
-  input{
-    width: auto;
+}
+
+@media (max-width: 768px) { 
+  .container .image {
+    flex: 0 1 auto;
+    height: 350px;
+
   }
-  .form-container input {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #cfd8dc;
-    border-radius: 50px;
+
+  .container .form-container {
+    padding: 1.5rem;
+  }
+
+  .form-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .form-container p {
     font-size: 1rem;
   }
-  
-  .form-container input:focus {
-    outline: none;
-    border-color: #f6e58d;
+
+  .form-container form {
+    width: 85%;
   }
-  
+
   .form-container button {
-    padding: 1rem;
-    background-color: #6c5ce7;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    height: 70px;
+    width: 200px;
   }
-  
-  .form-container button:hover {
-    background-color: #341f97;
+}
+
+@media (max-width: 480px) { 
+  .container .image {
+    flex: 0 1 auto;
+    height: 10px; 
+    min-height: 400px;
   }
-  
+
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-container form {
+    width: 90%; 
+  }
+
+  .form-container button {
+    font-size: 1rem;
+    height: 60px;
+  }
+}
