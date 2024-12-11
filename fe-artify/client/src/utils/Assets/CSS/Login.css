@@ -41,6 +41,7 @@
     /* https://pixabay.com/illustrations/abstract-continental-blue-line-4568803/ */
     background-image: url('../Images/login-banner.jpg');
     background-size: cover;
+    min-width: 600px;
     background-position: center;
   }
   
@@ -59,6 +60,7 @@
   
   p {
     margin-bottom: 1rem;
+    
   }
   
   input {
