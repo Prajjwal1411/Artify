@@ -113,7 +113,7 @@
 
 .join-a-world {
   height: 281px;
-  width:100%;
+  width: 100%;
   background-color: #65939D;
   display: flex;
   justify-content: space-between; 
@@ -156,7 +156,6 @@
   text-align: justify;
   margin-right: 100px;
 }
-
 
 .icon-image {
   width: 35px; 
@@ -251,8 +250,6 @@
   height: auto; 
 }
 
-
-
 /* Create and Set a Bid Section Styling */
 .create-bid-section {
   background-color: #406c77;
@@ -299,7 +296,7 @@
   display: inline-block;
   padding: 20px 40px;
   font-size: 20px;
-  max-width: 250px;
+  max-width: 200px;
   color: #ffffff;
   font-family: 'Space Mono', monospace;
   background: linear-gradient(to right, #CA318E, #471433, #360F27);
@@ -314,8 +311,6 @@
 .sign-up-button:hover {
   transform: scale(1.05);
 }
-
-
 
 /* How it Works Section Styling */
 .how-it-works-section {
@@ -339,4 +334,103 @@
   width: 100%; 
   margin-top: 50px;
   max-width: 1000px; 
+}
+
+/* Tablet view adjustments (768px and below) */
+@media (max-width: 768px) {
+  .intro-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .get-started-button {
+    font-size: 16px;
+    padding: 15px 30px;
+    margin-left: 95px;
+    width: 40%;
+    align-self: center;
+  }
+
+  .intro-image{
+    padding-top: 70px;
+  }
+
+  .intro-heading {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .join-a-world{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+  }
+
+  .join-heading {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .right-content {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .fast-bidding, .variety-artpieces, .additional-info {
+    text-align: center;
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .join-top-creators {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .join-today-button {
+    width: 50%;
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+
+  .create-bid-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .bid-heading {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .bid-paragraph {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .sign-up-button {
+    font-size: 16px;
+    padding: 15px 30px;
+    margin-top: 20px;
+  }
+
+  .how-it-works-section {
+    padding: 30px 10px;
+  }
+
+  .how-it-works-heading {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .how-it-works-svg {
+    width: 80%;
+    height: auto;
+  }
 }
