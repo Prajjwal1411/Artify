@@ -74,7 +74,7 @@ function ArtworkForm() {
     setIsSubmitting(true);
     setError(null);
 
-    // Optional: Validate formData here
+
 
     try {
       await saveProduct(formData);
@@ -85,7 +85,7 @@ function ArtworkForm() {
         startingBid: '',
         category: '',
         description: '',
-        sellerID: '', // Reset or set appropriately
+        sellerID: '', 
         categoryID: ''
       });
     } catch (err) {
