@@ -1,154 +1,209 @@
-/* Login.css */
+/* Base styles */
 .main {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f4f6;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height:100%;
-    justify-content: center;
-    align-items: center;
-  
-  }
-  
-  .container {
-    display: flex;
-    width: 100%;
-    height: 68vh;
-    
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.paragraph {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 9%;
+}
+
+.signup-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 9%;
+  margin-top: 10px;
+}
+
+.image2 {
+  flex: 1;
+  background-image: url('../Images/login-banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.form-container {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.success {
+  color: green !important;
+}
+
+.error-text {
+  color: red !important;
+}
+
+/* Tablet View (786px and below) */
+@media (max-width: 786px) {
+  .main {
+    height: 100%;
   }
 
-  .paragraph {
-    padding: 2rem;
+  .container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .image2 {
+    flex: none;
+    width: 100%;
+    height: 400px;
+  }
+
+  .form-container {
+    flex: 1;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    margin-left: 9%;   
+    justify-content: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  input {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.65rem;
+    width: 100px;
+    height: auto;
+    align-self: center;
   }
 
   .signup-link {
-    color: white;
-    text-decoration: none;
-    margin-left: 9%;
-    margin-top: 10px;
+    font-size: 0.9rem;
   }
-  
+}
+
+/* Mobile View (425px and below) */
+@media (max-width: 425px) {
+  .main {
+    height: auto;
+    overflow-x: hidden;
+  }
+
+  .container {
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+
   .image2 {
-    flex: 1;
-    /* https://pixabay.com/illustrations/abstract-continental-blue-line-4568803/ */
-    background-image: url('../Images/login-banner.jpg');
+    width: 100%;
+    height: 250px;
     background-size: cover;
-    min-width: 600px;
     background-position: center;
   }
-  
+
   .form-container {
-    flex: 1;
-    padding: 2rem;
+    width: 100%;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
-  
+
   h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
   }
-  
+
   p {
+    font-size: 0.9rem;
     margin-bottom: 1rem;
-    
   }
-  
+
   input {
-    width: 100%;
+    font-size: 0.9rem;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    
   }
-  
+
   button {
+    font-size: 1rem;
+    padding: 0.8rem;
     width: 100%;
-    padding: 0.75rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    height: auto;
+    align-self: center;
   }
-  
-  button:hover {
-    background-color: #0056b3;
+
+  .signup-link {
+    font-size: 0.9rem;
+    text-align: center;
   }
-  
-  .success {
-    color: green !important;
-  }
-  
+
   .error-text {
-    color: red !important;
+    font-size: 0.8rem;
   }
-  
-  
-  
-    @media (max-width: 786px) {
-      .main {
-        height: 100%;
-      }
-    
-      .container {
-        flex-direction: column; 
-        width: 90%;
-        height: auto;
-        margin: 0 auto;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      }
-    
-      .image2 {
-        flex: none;
-        width: 100%; 
-        height: 400px;  
-        background-image: url('../Images/login-banner.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-    
-      .form-container {
-        flex: 1;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-    
-      h2 {
-        font-size: 1.5rem;
-      }
-    
-      p {
-        font-size: 1rem;
-      }
-    
-      input {
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-    
-      button {
-        font-size: 1rem;
-        padding: 0.65rem;
-        width: 100px;
-        height: auto;
-        align-self: center;
-      }
-    
-      .signup-link {
-        font-size: 0.9rem;
-      }
-    }
+}
