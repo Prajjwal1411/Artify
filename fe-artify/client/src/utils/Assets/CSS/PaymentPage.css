@@ -3,22 +3,30 @@
     flex-direction: column;
     min-height: 100vh;
     background-color: #385966;
+    align-items: center; /* Centering the content */
 }
 
 .payment-page-main {
     display: flex;
     flex-grow: 1;
-    justify-content: space-between;
+    justify-content: center; /* Center the content horizontally */
     padding: 20px;
     background-color: #385966;
+    width: 100%;
+}
+
+.payment-left-div,
+.payment-right-div,
+.payment-form {
+    width: 100%;
+    max-width: 503px; /* Restrict the width to a max value */
+    margin-bottom: 20px; /* Add space between sections */
 }
 
 .payment-left-div {
-    flex: 1;
-    padding: 40px;
     background-color: #385966;
     color: white;
-    margin-right: 10px;
+    padding: 40px;
 }
 
 .payment-left-div h2 {
@@ -80,6 +88,7 @@
 .discount-container input {
     flex: 1;
     margin-right: 10px;
+    width: auto;
     background-color: #65939D;
 }
 
@@ -88,7 +97,6 @@
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
-    width: auto;
     cursor: pointer;
     font-weight: bold;
     color: #385966;
@@ -126,12 +134,9 @@
 }
 
 .payment-right-div {
-    flex: 1;
-    padding: 40px;
     background-color: #385966;
     color: white;
-    /* border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+    padding: 40px;
 }
 
 .payment-details-box {
@@ -196,25 +201,24 @@
 }
 
 /* Card Icon CSS */
-
 .card-number-container {
     display: flex;
     align-items: center;
     position: relative;
-  }
-  
-  .card-type-icon {
+}
+
+.card-type-icon {
     width: 30px;
     height: 20px;
     position: absolute;
     left: 10px;
-  }
-  
-  .card-number-container input {
-    padding-left: 50px; 
-  }
-  
-  .clear-button {
+}
+
+.card-number-container input {
+    padding-left: 50px;
+}
+
+.clear-button {
     background-color: white;
     border: none;
     border-radius: 4px;
@@ -223,9 +227,81 @@
     cursor: pointer;
     font-weight: bold;
     color: #385966;
-  }
+}
 
-  .clear-button:hover {
+.clear-button:hover {
     background-color: #9563FF;
     color: white;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .payment-page-main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payment-left-div,
+    .payment-right-div,
+    .payment-form {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .payment-left-div {
+        order: 1; /* First element */
+        margin-bottom: 20px;
+    }
+
+    .payment-right-div {
+        order: 2; /* Second element */
+        margin-bottom: 20px;
+    }
+
+    .payment-form {
+        order: 3; /* Last element */
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 425px) {
+    .payment-left-div,
+    .payment-right-div,
+    .payment-form {
+        padding: 20px;
+    }
+
+    .payment-left-div h2 {
+        font-size: 30px;
+    }
+
+    .payment-form input,
+    .payment-form label {
+        font-size: 16px;
+    }
+
+    .pay-now-button {
+        width: 200px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .payment-details-box {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .payment-summary-title {
+        font-size: 30px;
+    }
+
+    .payment-total {
+        font-size: 40px;
+    }
+
+    .payment-detail-title,
+    .payment-detail-content {
+        font-size: 16px;
+    }
 }
