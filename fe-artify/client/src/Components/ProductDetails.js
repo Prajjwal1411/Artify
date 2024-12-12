@@ -5,13 +5,15 @@ import ProductCard from '../Reusables/ProductCard';
 import Header from '../Reusables/Header';
 import Footer from '../Reusables/Footer';
 import defaultAvatar from '../utils/Assets/Images/avatar1.png';
-
-
+import bidPopupImage from '../utils/Assets/Images/bidpopup.png';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [creator, setCreator] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(0); // Time remaining in milliseconds
+  const [bidAmount, setBidAmount] = useState(''); // Bid amount input
+  const [showPopup, setShowPopup] = useState(false); // Control popup visibility
 
   // Fetch product details
   useEffect(() => {
@@ -26,6 +28,10 @@ const ProductDetails = () => {
             username: data.product.creatorName,
             avatar: data.product.creatorProfilePic,
           });
+
+          const productAddedDate = new Date(data.product.productAddedOn);
+          const endTime = new Date(productAddedDate.getTime() + 168 * 60 * 60 * 1000); // 168 hours later
+          setTimeLeft(Math.max(endTime - Date.now(), 0)); // Calculate the time left in milliseconds
         } else {
           console.error("Product not found");
         }
@@ -36,6 +42,44 @@ const ProductDetails = () => {
 
     fetchProductDetails();
   }, [id]);
+
+  // Timer logic for calculating remaining time
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const interval = setInterval(() => {
+      setTimeLeft((prevTime) => Math.max(prevTime - 1000, 0)); // Decrease by 1 second (1000 ms)
+
+      if (timeLeft <= 1000) {
+        clearInterval(interval); // Clear the interval when the time is up
+      }
+    }, 1000);
+
+    return () => clearInterval(interval); // Clean up interval on component unmount
+  }, [timeLeft]);
+
+  const getRemainingTime = (timeLeft) => {
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+    return `${hours}h ${minutes}m ${seconds}s left`;
+  };
+
+  const handleBidSubmit = () => {
+    if (parseFloat(bidAmount) <= product.startingBid) {
+      alert('Bid amount must be greater than the starting bid!');
+      return;
+    }
+
+    // Show the popup
+    setShowPopup(true);
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 3000);
+  };
 
   if (!product) return <div>Loading...</div>;
 
@@ -116,27 +160,31 @@ const ProductDetails = () => {
                 <h3>Auction Ends in</h3>
                 <div className="auction-timer">
                   <div className="time-segment">
-                    <span className="time-value">12:</span>
-                    <span className="timer-label">Hours</span>
-                  </div>
-                  <div className="time-segment">
-                    <span className="time-value">30:</span>
-                    <span className="timer-label">Minutes</span>
-                  </div>
-                  <div className="time-segment">
-                    <span className="time-value">50</span>
-                    <span className="timer-label">Seconds</span>
+                    <span className="time-value">{getRemainingTime(timeLeft)}</span>
+                    <span className="timer-label">Time Left</span>
                   </div>
                 </div>
               </div>
 
+              {/* Bid Input Section */}
               <div className="bid-input-box">
                 <input
                   type="number"
                   className="bid-input"
                   placeholder="Enter your bid"
+                  value={bidAmount}
+                  onChange={(e) => setBidAmount(e.target.value)}
                 />
-                <button className="place-bid-button">Place Bid</button>
+                <button className="place-bid-button" onClick={handleBidSubmit}>
+                  Place Bid
+                </button>
+
+                {/* Bid Popup Image */}
+                {showPopup && (
+                  <div className="bid-popup">
+                    <img src={bidPopupImage} alt="Bid Popup" className="bid-popup-image" />
+                  </div>
+                )}
               </div>
             </aside>
           </div>
