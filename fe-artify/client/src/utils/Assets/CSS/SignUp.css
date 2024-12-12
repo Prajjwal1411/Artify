@@ -211,6 +211,7 @@ input {
 
   .submit {
     font-size: 1rem;
+  }
 
 /* Responsive Styles */
 @media (max-width: 1024px) { 
@@ -293,4 +294,5 @@ input {
     height: 60px;
 
   }
+}
 }

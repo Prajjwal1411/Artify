@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../utils/Assets/CSS/ArtworkForm.css';
 import Header from '../Reusables/Header';
 import Footer from '../Reusables/Footer';
-import Select from 'react-select';
 import { convertToBase64 } from '../Reusables/ReuseableFunction';
 import { saveProduct } from '../utils/services/productServices';
 import { getCategories } from '../utils/services/categoryServices';
 
 function ArtworkForm() {
-  const [options, setOptions] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
     productName: '',
     productImage: '',
@@ -25,11 +24,7 @@ function ArtworkForm() {
     const fetchCategories = async () => {
       try {
         const data = await getCategories();
-        const formattedOptions = data.map((category) => ({
-          value: category.id,    
-          label: category.categoryName
-        }));
-        setOptions(formattedOptions);
+        setCategories(data);
       } catch (err) {
         console.error('Error fetching categories:', err);
         setError('Failed to load categories.');
@@ -53,6 +48,7 @@ function ArtworkForm() {
       }
     }
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -62,11 +58,14 @@ function ArtworkForm() {
     }));
   };
 
-  const handleCategoryChange = (selectedOption) => {
+  const handleCategoryChange = (e) => {
+    const { value } = e.target;
+    const selectedCategory = categories.find(category => category.categoryName === value);
+    console.log(selectedCategory)
     setFormData((prevData) => ({
       ...prevData,
-      category: selectedOption.label,
-      categoryID: selectedOption.value
+      category: selectedCategory ? selectedCategory.categoryName : '',
+      categoryID: selectedCategory ? selectedCategory.id : ''
     }));
   };
 
@@ -79,7 +78,6 @@ function ArtworkForm() {
 
     try {
       await saveProduct(formData);
-      // Optional: Provide success feedback, reset form, redirect, etc.
       alert('Product saved successfully!');
       setFormData({
         productName: '',
@@ -113,7 +111,7 @@ function ArtworkForm() {
                 onChange={handleFileChange}
                 className="file-input"
                 accept=".png,.jpeg,.jpg"
-                required // Make file required if necessary
+                required 
               />
               <div className="file-upload-box">
                 <p>Choose a file or drag & drop it here</p>
@@ -159,16 +157,21 @@ function ArtworkForm() {
             </div>
             <div className="category-group">
               <label htmlFor="category">Category*</label>
-              <Select
+              <select
+                class="select"
                 id="category"
                 name="categoryID"
-                placeholder="Select Category"
-                options={options} 
+                value={formData.categoryID}
                 onChange={handleCategoryChange}
-                value={options.find(option => option.value === formData.categoryID) || null}
-                isClearable
                 required
-              />
+              >
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.categoryName}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="description-group">
               <label htmlFor="description">Artwork Description</label>
